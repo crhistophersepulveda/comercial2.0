@@ -13,7 +13,7 @@ class Articulos extends CI_Model
 
             'idProducto' => $idProducto,
             'descripcion' => $descripcion,
-            'uvicacion' => $uvicacion,
+            'ubicacion' => $uvicacion,
             'stock' => $stock,
             'stock_minimo' => $stock_minimo,
             'fecha_compra' => $fecha_compra,

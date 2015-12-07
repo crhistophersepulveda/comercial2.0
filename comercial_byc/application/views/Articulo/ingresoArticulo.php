@@ -1,7 +1,12 @@
 ﻿<!DOCTYPE html>
+
+
+
 <html lang="en">
 
     <head>
+
+    }
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +17,8 @@
         <title>Comercial B & C</title> <!--Titulo pestaña-->
         <!-- Bootstrap Core CSS -->
         <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
 
         <!-- MetisMenu CSS -->
         <link href="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
@@ -26,6 +33,8 @@
         <!-- Custom Fonts -->
         <link href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+          <!-- ... -->
+  
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -323,7 +332,7 @@
             <div class="row"><!-- 2 -->
                 <div class="col-lg-12"><!-- 3 -->
                     <div class="panel panel-default" ><!-- 4 -->
-                        <?=form_open('/index.php/ingresarCliente/ingresarcliente"');
+                        <?=form_open('/index.php/ingresarArticulo/ingresararticulo"');
                             //aqui se procesará nuestro formulario, controlador comentarios, función insertar_comentarios
                             //creamos los arrays que compondran nuestro formulario
                             //primer array con el input que se llamará nombre y será donde introduciremos el mismo
@@ -363,11 +372,15 @@
                                 'id' => 'stock_minimo',
                                 'class'=>'form-control'
                             );
-
+                            $this->load->helper('date');
+                            $datestring = "%Y/%m/%d ";
+                            $time = time();
+                                            
                             $fecha_compra = array(
                                 'name' => 'fecha_compra',
                                 'id' => 'fecha_compra',
-                                'class'=>'form-control'
+                                'class'=>'form-control',
+                                'value' => mdate($datestring, $time)
                             );
 
                             $costo = array(
@@ -393,13 +406,6 @@
                                 'id' => 'constructora',
                                 'class'=>'form-control'
                             );
-
-                            $Proveedor_rut = array(
-                                'name' => 'Proveedor_rut',
-                                'id' => 'Proveedor_rut',
-                                'class'=>'form-control'
-                            );
-
                             //el botón submit de nuestro formulario se le da la clase para quedar con boobtstrap
                             $submit = array(
                                 'name' => 'submit',
@@ -415,7 +421,7 @@
                         <div class="panel panel-default"  ><!-- 5 -->
 
                             <div class="panel-heading">
-                                Ingreso de Cliente
+                                Ingreso de Articulo
                             </div>
 
                             <div class="panel-body"><!-- 6 -->
@@ -423,7 +429,7 @@
                                     <?php echo validation_errors(); ?>
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <label>Nombre Articulo:</label>
+                                            <label>Codigo Articulo:</label>
                                             <?php echo form_input($idProducto); ?>
                                         </div>
                                         <div class="col-md-5">
@@ -446,23 +452,26 @@
                                             <label>Stock minimo</label>
                                             <?php echo form_input($stock_minimo); ?>
                                         </div>
-                                        <div class="col-md-2">
-                                            <label>Fecha de compra</label>
-                                             <?php echo form_input($fecha_compra); ?>
-                                        </div>  
 
-                                        <div class="col-md-2">
+                                            <div class="col-md-4">
                                             <label>Proveedor</label>
-                                            <select class="form-control" name="lista_precio"  >
+                                            <select class="form-control" name="proveedor_rut"  >
                                                 <?php 
                                             // a si se hacen estas malditas consultas <3 
-                                            $sql=$this->db->query('select rut from Proveedor');
+                                            $sql=$this->db->query('select rut, razon_social from Proveedor');
                                             foreach($sql->result() as $result){
-                                                echo "<option>$result->rut</option>";
+                                                echo "<option>$result->rut $result->razon_social</option>";
                                             }
                                             ?>
                                             </select>
                                         </div>
+
+                                        <div class="col-md-3">
+                                            <label>Fecha de compra</label>
+                                             <div class="form-group input-group">
+                                                <?php echo form_input($fecha_compra); ?>
+                                            </div>
+                                        </div>  
                                     </div>
 
 
@@ -491,7 +500,7 @@
                                         <br />
                                         <div class="col-md-2">
                                             <label>Unidad</label>
-                                            <select class="form-control" name="vendedor"  >
+                                            <select class="form-control" name="unidad"  >
                                             <?php 
                                             // a si se hacen estas malditas consultas <3 
                                             $sql=$this->db->query('select Unidad from Unidad');
@@ -503,7 +512,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label>Marca</label>
-                                            <select class="form-control" name="vendedor"  >
+                                            <select class="form-control" name="marca"  >
                                             <?php 
                                             // a si se hacen estas malditas consultas <3 
                                             $sql=$this->db->query('select Marca from Marca');
@@ -515,7 +524,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <label>Rubro</label>
-                                            <select class="form-control" name="lista_precio"  >
+                                            <select class="form-control" name="rubro"  >
                                                 <?php 
                                             // a si se hacen estas malditas consultas <3 
                                             $sql=$this->db->query('select Rubro from Rubro');
@@ -527,13 +536,14 @@
                                         </div>
                                     </div>
 
+  
                                     <div class="row">
                                         <br />
                                         <div class="col-md-3">
                                             <?php echo form_submit($submit);?>
                                         </div>
                                     </div>       
-                                </form>   
+                                </form> 
                             </div><!-- 6 -->
                         </div><!-- 5 -->      
                     </div><!-- 4 -->
@@ -544,6 +554,7 @@
         <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap-datetimepicker.min.js"></script>
         <!-- Metis Menu Plugin JavaScript -->
         <script src="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
         <!-- Custom Theme JavaScript -->

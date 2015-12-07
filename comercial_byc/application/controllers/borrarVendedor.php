@@ -15,20 +15,6 @@ class borrarVendedor extends CI_Controller{
         $this->load->view("Vendedor/modificarVendedor",$datos);
 	}
 
-	/*------------------------------------------------------------------------------------/
-									ARTICULOS
-	-------------------------------------------------------------------------------------*/
-
-	public function borrar_producto(){
-		
-		$idProducto = $this->uri->segment(3);
-		$this->modelo_model->borrar_producto($idProducto);
-		redirect("index.php/modificar/modificararticulo");
-	}
-
-	/*------------------------------------------------------------------------------------/
-									VENDEDOR
-	-------------------------------------------------------------------------------------*/
 
 	public function borrar_vendedor(){
 
