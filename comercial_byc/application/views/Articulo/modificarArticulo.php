@@ -324,27 +324,98 @@
                                     </thead>
                                     <tbody>
                                        <?php 
-                                        foreach ($modificar-> result() as $modificars){
+                                        
+                                     foreach ($modificar-> result() as $modificars){
                                             echo "  
                                             <tr>
-                                            <form action=''; method='post';>
-                                                <td>$modificars->idProducto</td>
-                                                <td>$modificars->descripcion</td>
-                                                <td>$modificars->costo</td>
-                                                <td>$modificars->ferretera</td>
-                                                <td>$modificars->especialista</td>
-                                                <td>$modificars->constructora</td>
+                                            <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/borrarArticulo/borrar_producto'>
+                                                <td><input type='hidden' value='$modificars->idProducto' name='valor_enviar'>$modificars->idProducto</input></td>
+                                                <<td>$modificars->descripcion</td>
+                                                    <td>$modificars->costo</td>
+                                                    <td>$modificars->ferretera</td>
+                                                    <td>$modificars->especialista</td>
+                                                    <td>$modificars->constructora</td>
                                                 <td>
-                                                <button type='button' class='btn btn-primary btn-circle'> <i class='fa fa-list'></i></button>
+                                                <button type='button' class='btn btn-primary btn-circle' data-toggle='modal' data-target='#2$modificars->idProducto' > <i class='fa fa-list'></i></button>
                                                 </td>
                                                 <td>
-                                                <button type='button' class='btn btn-warning btn-circle'><a href=".base_url()."index.php/borrar/borrar_producto/".$modificars->idProducto."/> <i class='fa fa-times'></i></button>
-                                                </td>";       
+                                                
+                                                <button type='button' class='btn btn-warning btn-circle' data-toggle='modal' data-target='#$modificars->idProducto' > <i class='fa fa-times'></i></button>
+                                                   <div class='modal fade in' id='$modificars->idProducto' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;''>
+                                                        <div class='modal-dialog'>
+                                                            <div class='modal-content'>
+                                                                <div class='modal-header'>
+                                                                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+                                                                    <h4 class='modal-title' id='myModalLabel'>¡Atención!</h4>
+                                                                </div>
+                                                                <div class='modal-body'>
+                                                                ¿Seguro que deseas <b>Eliminar</b>?    
+                                                                </div>
+                                                                <div class='modal-footer'>
+                                                                    <button type='submit' class='btn btn-primary' value='Eliminar'>Confirmar</button>
+                                                                    <button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                  </form>
+
+
+                                                    <div class='modal fade in' id='2$modificars->idProducto' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;''>
+                                                        <div class='modal-dialog'>
+                                                            <div class='modal-content'>
+                                                                <div class='modal-header'>
+                                                                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+                                                                    <h4 class='modal-title' id='myModalLabel'>Menu Modificar</h4>
+                                                                </div>
+                                                                <div class='modal-body'>
+                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/modificarVendedor/modificarvendedor'>
+                                                                        
+                                                                        <div class='row'>
+                                                                              <label style='margin-left: 15px'>   Rut: $modificarv->rut</label>
+                                                                              <input type='hidden' value='$modificarv->rut' name='rut'>
+                                                                              <label style='margin-left: 15px'>   Nombre: $modificarv->nombre</label>
+                                                                              <input type='hidden' value='$modificarv->nombre' name='nombre'>
+                                                                         </div>
+                                                                         <br/>
+                                                                         <div class='row'>
+                                                                             
+                                                                                 <label style='margin-left:15px'>Dirección: </label>
+                                                                                <input style ='margin-left:10px'value='$modificarv->direccion' class='form-control' name='direccion'/>
+                                                                                
+                                                                         </div>
+
+                                                                         <br/>
+                                                                        <div class='row'>
+                                                                                 <label style='margin-left: 15px' >Celular: </label>
+                                                                                <input style ='margin-left:27px' value='$modificarv->celular' class='form-control' name='celular'/>
+                                                                                 <label style='margin-left: 15px'>Correo: </label>
+                                                                                <input style ='margin-left:37px' value='$modificarv->correo' class='form-control' name='correo'/>
+
+                                                                         </div>
+                                                                         <br/>
+
+                                                                         <div class='row'>
+                                                                                 <label style='margin-left: 15px' >Comisión: </label>
+                                                                                <input style ='margin-left:13px' value='$modificarv->comision' class='form-control' name='comision'/>
+                                                                                 <label style='margin-left: 15px'>Sueldo Base: </label>
+                                                                                <input value='$modificarv->sueldo_base' class='form-control' name='sueldo_base'/>
+                                                                         </div>
+                                                                 
+                                                                        </div>
+                                                                        <div class='modal-footer'>
+                                                                            <button type='submit' class='btn btn-primary' value='Eliminar'>Modificar</button>
+                                                                        </div>
+                                                                   </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                     
+                                                </td>
+                                                ";      
                                                 }
                                             echo "
-                                            </tr>
-                                            ";   
-                                        ?>
+                                            </tr>";  
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
