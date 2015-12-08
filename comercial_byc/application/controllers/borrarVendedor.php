@@ -15,6 +15,17 @@ class borrarVendedor extends CI_Controller{
         $this->load->view("Vendedor/modificarVendedor",$datos);
 	}
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+
+	/*------------------------------------------------------------------------------------/
+									VENDEDOR
+	-------------------------------------------------------------------------------------*/
+=======
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 
 	public function borrar_vendedor(){
 

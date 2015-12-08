@@ -309,12 +309,6 @@
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-
-
-
-
-
-
         </nav>
     </div>
         <div id="page-wrapper">
@@ -339,36 +333,156 @@
                                     <thead>
                                         <tr>
                                             <th>Rut</th>
-                                            <th>Razón Social</th>
+                                            <th>Razon Social</th>
+                                            <th>Dirección</th>
                                             <th>Contacto</th>
                                             <th>Celular</th>
                                             <th>Correo</th>
+                                            <th>Vendedor</th>
                                             <th>Modificar</th>
                                             <th>Eliminar</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       <?php 
+                                        <?php 
+
                                         foreach ($modificarcliente-> result() as $modificarc){
+                                            $sql=$this->db->query("select v.rut, v.nombre from Vendedor v, Cliente cl where v.rut = cl.Vendedor_rut and cl.rut = '$modificarc->rut'");
+                                            $sql4=$this->db->query("select v.rut, v.nombre from Vendedor v, Cliente cl where v.rut <> cl.Vendedor_rut and cl.rut = '$modificarc->rut'");
+                                            $sql2=$this->db->query("select li.Lista_precio from Lista_precios li, Cliente cl where li.Lista_precio = cl.lista_precios_lista_precio and cl.rut = '$modificarc->rut'");
+                                            $sql3=$this->db->query("select li.Lista_precio from Lista_precios li, Cliente cl where li.Lista_precio <> cl.lista_precios_lista_precio and cl.rut = '$modificarc->rut'");
                                             echo "  
                                             <tr>
-                                                <td>$modificarc->rut</td>
+                                            <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/borrarCliente/borrar_cliente'>
+                                                <td><input type='hidden' value='$modificarc->rut' name='valor_enviar'>$modificarc->rut</input></td>
                                                 <td>$modificarc->nombre_razon</td>
                                                 <td>$modificarc->contacto</td>
+                                                <td>$modificarc->direccion</td>
                                                 <td>$modificarc->celular</td>
                                                 <td>$modificarc->correo</td>
+                                                <td>$modificarc->Vendedor_rut</td>
                                                 <td>
-                                                <button type='button' class='btn btn-primary btn-circle'> <i class='fa fa-list'></i></button>
+                                                <button type='button' class='btn btn-primary btn-circle' data-toggle='modal' data-target='#2$modificarc->rut' > <i class='fa fa-list'></i></button>
                                                 </td>
                                                 <td>
-                                                <button type='button' class='btn btn-warning btn-circle'> <i class='fa fa-times'></i></button>
-                                                </td>";       
+                                                
+                                                <button type='button' class='btn btn-warning btn-circle' data-toggle='modal' data-target='#$modificarc->rut' > <i class='fa fa-times'></i></button>
+                                                   <div class='modal fade in' id='$modificarc->rut' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;''>
+                                                        <div class='modal-dialog'>
+                                                            <div class='modal-content'>
+                                                                <div class='modal-header'>
+                                                                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+                                                                    <h4 class='modal-title' id='myModalLabel'>¡Atención!</h4>
+                                                                </div>
+                                                                <div class='modal-body'>
+                                                                ¿Seguro que deseas <b>Eliminar</b>?    
+                                                                </div>
+                                                                <div class='modal-footer'>
+                                                                    <button type='submit' class='btn btn-primary' value='Eliminar'>Confirmar</button>
+                                                                    <button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+                                                </form>
+
+
+                                                    <div class='modal fade in' id='2$modificarc->rut' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;''>
+                                                        <div class='modal-dialog'>
+                                                            <div class='modal-content'>
+                                                                <div class='modal-header'>
+                                                                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
+                                                                    <h4 class='modal-title' id='myModalLabel'>Modificar Cliente</h4>
+                                                                </div>
+                                                                <div class='modal-body'>
+                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/modificarCliente/modificarcliente'>
+                                                                        
+                                                                        <div class='row'>
+                                                                              <label style='margin-left: 15px'>   Rut: $modificarc->rut</label>
+                                                                              <input type='hidden' value='$modificarc->rut' name='rut'>
+                                                                              <label style='margin-left: 30px'>   Razon Social: $modificarc->nombre_razon</label>
+                                                                              <input type='hidden' value='$modificarc->nombre_razon' name='nombre_razon'>
+                                                                        </div>
+                                                                        <br/>
+                                                                        <div class='row'>
+                                                                             
+                                                                                <label style='margin-left:15px'>Dirección: </label>
+                                                                                <input style ='margin-left:10px'value='$modificarc->direccion' class='form-control' name='direccion'/>
+                                                                                <label style='margin-left: 15px' >Contacto: </label>
+                                                                                <input style ='margin-left:27px' value='$modificarc->contacto' class='form-control' name='contacto'/>
+                                                                        </div>
+
+                                                                        <br/>
+                                                                        
+                                                                        <div class='row'>
+                                                                            <label style='margin-left: 15px'>Celular: </label>
+                                                                            <input style ='margin-left:24px' value='$modificarc->celular' class='form-control' name='celular'/>
+                                                                            <label style='margin-left: 15px'>Correo: </label>
+                                                                            <input style ='margin-left:45px' value='$modificarc->correo' class='form-control' name='correo'/>
+
+                                                                        </div>
+                                                                        <br/>
+                                                                        
+
+
+                                                                        <div class='row'>
+                                                                        
+                                                                        <label style='margin-left: 15px'>Vendedor: </label>
+                                                                            <select style='margin-left:7px' name='vendedor'>
+                                                                            "; 
+                                                                        ?>
+
+                                                                        <?php 
+                                                                        foreach($sql -> result() as $result){
+                                                                            echo"
+                                                                                <option name='vendedor'>$result->rut $result->nombre</option>
+                                                                            ";
+                                                                        }
+                                                                        foreach($sql4 ->result() as $result4){
+                                                                            echo"<option name='vendedor'>$result4->rut $result4->nombre</option>";
+                                                                        }
+                                                                        ?>
+
+
+                                                                        <?php
+                                                                        echo "
+                                                                            </select>
+
+
+                                                                        <label style='margin-left:125px'>Lista de Precios: </label>
+                                                                            <select style='margin-left:15px' name='lista_precios_lista_precio'>";
+                                                                            ?>
+                                                                            <?php 
+                                                                          foreach($sql2 -> result() as $result2){ 
+                                                                          echo"
+                                                                            <option name='$lista_precios_lista_precio'> $result2->Lista_precio</option>";}     
+                                                                        foreach($sql3 ->result() as $result3){
+                                                                            
+                                                                            
+                                                                        
+                                                                            echo"
+                                                                            <option name='$lista_precios_lista_precio'> $result3->Lista_precio</option>";}
+                                                                        ?>
+                                                                        <?php 
+                                                                        echo"
+                                                                            </select>
+                                                                        </div>
+                                                                        <br/>
+
+                                                                        
+                                                                        <div class='modal-footer'>
+                                                                            <button type='submit' class='btn btn-primary' value='Eliminar'>Modificar</button>
+                                                                        </div>
+                                                                   </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                     
+                                                </td>
+                                                ";      
                                                 }
                                             echo "
-                                            </tr>
-                                      
-                                        ";   
-                                    ?>
+                                            </tr>";  
+                                    ?> 
                                     </tbody>
                                 </table>
                             </div>

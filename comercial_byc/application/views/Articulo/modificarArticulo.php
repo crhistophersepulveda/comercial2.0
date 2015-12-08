@@ -418,6 +418,7 @@
                                     ?>
                                     </tbody>
                                 </table>
+                                <input type='file'></input>
                             </div>
                             <!-- /.table-responsive -->
                         </div>

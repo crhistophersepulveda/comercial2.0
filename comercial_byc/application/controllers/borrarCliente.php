@@ -1,6 +1,6 @@
 <?php
 
-class borrarProveedor extends CI_Controller{
+class borrarCliente extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();
@@ -16,12 +16,12 @@ public function Index (){
 									VENDEDOR
 -------------------------------------------------------------------------------------*/
 
-	public function borrar_proveedor(){
+	public function borrar_cliente(){
 
 		$rut = array('idd' => $this->input->post('valor_enviar'));
 		echo "el rut es: ".$rut['idd'];
-		$this->modelo_model->borrar_proveedor($rut);
-		redirect('index.php/modificarproveedor');
+		$this->modelo_model->borrar_clientes($rut);
+		redirect('index.php/modificar/modificarcliente');
 	}
 
 

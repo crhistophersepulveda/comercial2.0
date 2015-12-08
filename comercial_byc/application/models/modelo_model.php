@@ -39,6 +39,12 @@ class Modelo_model extends CI_Model
 	public function mostrar_clientes(){
 		return $this->db->get('Cliente');
 	}
+/*--BORRAR CLIENTES--*/
+
+	public function borrar_clientes($rut){
+		$this->db->where ('rut',$rut['idd']);
+		return $this->db->delete('Cliente');
+	}
 /*------------------------------------------------------------------------------------/
 								VENDEDOR
 -------------------------------------------------------------------------------------*/
