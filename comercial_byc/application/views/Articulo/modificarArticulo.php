@@ -318,6 +318,7 @@
                                             <th>P. Ferretera</th>
                                             <th>P. Especialista</th>
                                             <th>P. Constructora</th>
+                                            <th>Marca</th>
                                             <th>Modificar</th>
                                             <TH>Eliminar</th>
                                         </tr>
@@ -325,15 +326,26 @@
                                     <tbody>
                                        <?php 
                                      foreach ($modificar-> result() as $modificars){
-                                            echo "  
+                                        $sql1=$this->db->query("select distinct(pr.rut), pr.razon_social from Proveedor pr, Producto p where pr.rut = p.Proveedor_rut and p.Proveedor_rut = '$modificars->Proveedor_rut'");
+                                        $sql2=$this->db->query("select distinct(pr.rut), pr.razon_social from Proveedor pr, Producto p where pr.rut <> p.Proveedor_rut and p.Proveedor_rut = '$modificars->Proveedor_rut'");
+                                        $sql3=$this->db->query("select M.Marca from Marca M, Producto p where M.Marca = p.Marca_Marca and p.Marca_Marca = '$modificars->Marca_Marca'");
+                                        $sql4=$this->db->query("select M.Marca from Marca M, Producto p where M.Marca <> p.Marca_Marca and p.Marca_Marca = '$modificars->Marca_Marca'");
+                                        $sql5=$this->db->query("select r.Rubro from Rubro r, Producto p where r.Rubro = p.Rubro_Rubro and p.Rubro_Rubro = '$modificars->Rubro_Rubro'");
+                                        $sql6=$this->db->query("select r.Rubro from Rubro r, Producto p where r.Rubro <> p.Rubro_Rubro and p.Rubro_Rubro = '$modificars->Rubro_Rubro'");
+                                        $sql7=$this->db->query("select u.Unidad from Unidad u, Producto p where u.Unidad = p.Unidad_Unidad and p.Unidad_Unidad = '$modificars->Unidad_Unidad'");
+                                        $sql8=$this->db->query("select u.Unidad from Unidad u, Producto p where u.Unidad <> p.Unidad_Unidad and p.Unidad_Unidad = '$modificars->Unidad_Unidad'");
+                                        
+
+                                        echo "  
                                             <tr>
                                             <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/borrarArticulo/borrar_producto'>
                                                 <td><input type='hidden' value='$modificars->idProducto' name='valor_enviar'>$modificars->idProducto</input></td>
                                                 <td>$modificars->descripcion</td>
-                                                <td>$modificars->descripcion</td>
-                                                <td>$modificars->descripcion</td>
-                                                <td>$modificars->descripcion</td>
-                                                <td>$modificars->descripcion</td>
+                                                <td>$modificars->costo</td>
+                                                <td>$modificars->ferretera</td>
+                                                <td>$modificars->especialista</td>
+                                                <td>$modificars->constructora</td>
+                                                <td>$modificars->Marca_Marca</td>
                                                 <td>
                                                 <button type='button' class='btn btn-primary btn-circle' data-toggle='modal' data-target='#2$modificars->idProducto' > <i class='fa fa-list'></i></button>
                                                 </td>
@@ -371,13 +383,132 @@
                                                                     <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/modificarArticulo/modificararticulo'>
                                                                         
                                                                         <div class='row'>
-                                                                              <label style='margin-left: 15px'>   Rut: $modificars->idProducto</label>
+                                                                              <label style='margin-left:5px'>Codigo Producto: $modificars->idProducto</label>
                                                                               <input type='hidden' value='$modificars->idProducto' name='idProducto'>
-                                                                              <label style='margin-left: 30px'>Descripcion: </label>
-                                                                              <input style ='margin-left:27px' value='$modificars->descripcion' class='form-control' name='descripcion'/>
+                                                                              
                                                                         </div>
                                                                         <br/>
+                                                                        <div class='row'>
+                                                                            <label style='margin-left: 5px'>Descripción: </label>
+                                                                            <input style ='margin-left:5px' value='$modificars->descripcion' class='form-control' name='descripcion'/>
+                                                                            
+                                                                        </div>
                                                                         
+                                                                        <br/>
+                                                                        <div class='row'>
+                                                                            <label style='margin-left:5px'>Proveedor: </label>
+                                                                            <select style='margin-left:7px' name='proveedor'>";
+                                                                            ?>
+                                                                            <?php 
+                                                                            foreach($sql1 -> result() as $result1){
+                                                                                echo
+                                                                                "
+                                                                                <option name='proveedor'>$result1->rut $result1->razon_social</option>
+                                                                                ";
+                                                                            }
+                                                                            foreach($sql2 -> result() as $result2){
+                                                                                echo
+                                                                                "
+                                                                                <option name='proveedor'>$result2->rut $result2->razon_social</option>
+                                                                                ";
+                                                                            }
+                                                                            ?>
+                                                                            <?php 
+
+                                                                            echo"
+                                                                            </select>
+                                                                        </div>
+                                                                        <br/>
+                                                                        <div class='row'>
+                                                                            <label style='margin-left:5px'>Marca: </label>
+                                                                            <select style='margin-left:7px' name='marca'>
+                                                                            ";
+                                                                            ?>
+                                                                            <?php 
+                                                                            foreach($sql3 -> result() as $result3){
+                                                                                echo
+                                                                                "
+                                                                                <option name='marca'>$result3->Marca</option>
+                                                                                ";
+                                                                            }
+                                                                            foreach($sql4 -> result() as $result4){
+                                                                                echo
+                                                                                "
+                                                                                <option name='marca'>$result4->Marca</option>
+                                                                                ";
+                                                                            }
+                                                                            ?>
+                                                                            <?php
+                                                                            echo"
+                                                                            </select>
+
+                                                                            <label style='margin-left:5px'>Rubro: </label>
+                                                                            <select style='margin-left:7px' name='rubro'>
+                                                                            ";
+                                                                            ?>
+                                                                            <?php 
+                                                                            foreach($sql5 -> result() as $result5){
+                                                                                echo
+                                                                                "
+                                                                                <option name='rubro'>$result5->Rubro</option>
+                                                                                ";
+                                                                            }
+                                                                            foreach($sql6 -> result() as $result6){
+                                                                                echo
+                                                                                "
+                                                                                <option name='rubro'>$result6->Rubro</option>
+                                                                                ";
+                                                                            }
+                                                                            ?>
+                                                                            <?php
+                                                                            echo"
+                                                                            </select>
+
+                                                                            <label style='margin-left:5px'>Unidad: </label>
+                                                                            <select style='margin-left:7px' name='unidad'>
+                                                                            ";
+                                                                            ?>
+                                                                            <?php 
+                                                                            foreach($sql7 -> result() as $result7){
+                                                                                echo
+                                                                                "
+                                                                                <option name='unidad'>$result7->Unidad</option>
+                                                                                ";
+                                                                            }
+                                                                            foreach($sql8 -> result() as $result8){
+                                                                                echo
+                                                                                "
+                                                                                <option name='unidad'>$result8->Unidad</option>
+                                                                                ";
+                                                                            }
+                                                                            ?>
+                                                                            <?php
+                                                                            echo"</select>
+                                                                        </div>
+                                                                        <br/>
+                                                                        <div class='row'>
+                                                                            <label style='margin-left:5px'>P. Costo: </label>
+                                                                            <input style ='margin-left:27px; width:75px' value='$modificars->costo' class='form-control' name='costo'/>
+                                                                        </div>
+                                                                        <br/>
+                                                                        <div class='row'>
+                                                                            <label style='margin-left:5px'>P. Ferretera: </label>
+                                                                            <input style='margin-left:5px; width:75px' value='$modificars->ferretera' class='form-control' name='ferretera'/>
+                                                                            <label style='margin-left:5px'>P. Especialista: </label>
+                                                                            <input style='margin-left:5px; width:75px' value='$modificars->especialista' class='form-control' name='especialista'/>
+                                                                            <label style='margin-left:5px'>P. Constructora: </label>
+                                                                            <input style='margin-left:5px; width:75px' value='$modificars->constructora' class='form-control' name='constructora'/>
+                                                                        </div>
+                                                                        <br/>
+                                                                        <div class='row'>
+                                                                            <label style='margin-left:5px'>Ubicación: </label>
+                                                                            <input style='margin-left:17px; width:75px' value='$modificars->ubicacion' class='form-control' name='ubicacion'/>
+                                                                            <label style='margin-left:5px'>Stock: </label>
+                                                                            <input style='margin-left:5px; width:75px' value='$modificars->stock' class='form-control' name='stock'/>
+                                                                            <label style='margin-left:5px'>Stock min: </label>
+                                                                            <input style='margin-left:5px; width:75px' value='$modificars->stock_minimo' class='form-control' name='stock_minimo'/>
+                                                                        </div>
+                                                                        <br/>
 
                                                                         
                                                                         <div class='modal-footer'>

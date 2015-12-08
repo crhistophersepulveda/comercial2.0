@@ -33,26 +33,26 @@ class Articulos extends CI_Model
         $this->db->insert('Producto',$data);
     }
 
-    function Modificar_articulo($idProducto, $descripcion){
+    function Modificar_articulo($idProducto, $descripcion, $ubicacion, $stock, $stock_minimo, $costo, $ferretera, $especialista, $constructora, $proveedor_rut, $marca, $rubro, $unidad){
         $data = array(
             'idProducto' => $idProducto,
             'descripcion' => $descripcion,
-            'ubicacion' => "x",
-            'stock' => "x",
-            'stock_minimo' => "x",
-            'fecha_compra' => "x",
-            'costo' => "x",
-            'ferretera' => "x",
-            'especialista' => "x",
-            'constructora' => "x",
+            'ubicacion' => $ubicacion,
+            'stock' => $stock,
+            'stock_minimo' => $stock_minimo,
+            'fecha_compra' => "2015/12/08",
+            'costo' => $costo,
+            'ferretera' => $ferretera,
+            'especialista' => $especialista,
+            'constructora' => $constructora,
             'campo1' => " X ",
             'campo2' => " X ",
             'campo3' => " X ",
             'campo4' => " X ",
-            'Proveedor_rut' => "1",
-            'Marca_Marca' => "1",
-            'Rubro_Rubro' => "ALMACEN",
-            'Unidad_Unidad' => "1",
+            'Proveedor_rut' => $proveedor_rut,
+            'Marca_Marca' => $marca,
+            'Rubro_Rubro' => $rubro,
+            'Unidad_Unidad' => $unidad,
         );
         $query = $this->db->where('idProducto', $idProducto);
         $query = $this->db->update('Producto', $data);
