@@ -15,10 +15,11 @@ public function Index (){
 	}
 
 	public function borrar_producto(){
-		
-		$idProducto = $this->uri->segment(3);
+
+		$idProducto = array('idd' => $this->input->post('valor_enviar'));
+		echo "el rut es: ".$idProducto['idd'];
 		$this->modelo_model->borrar_producto($idProducto);
-		redirect("index.php/modificar/modificararticulo");
+		redirect('index.php/modificar/modificararticulo');
 	}
 
 

@@ -353,9 +353,9 @@
                             );
              
                             //el tercero...(campo asunto)
-                            $uvicacion = array(
-                                'name' => 'uvicacion',
-                                'id' => 'uvicacion',
+                            $ubicacion = array(
+                                'name' => 'ubicacion',
+                                'id' => 'ubicacion',
                                 'size' => '50',
                                 'class'=>'form-control'
                             );
@@ -437,8 +437,8 @@
                                             <?php echo form_input($descripcion); ?>
                                         </div>
                                         <div class="col-md-2">
-                                            <label>Uvicacion</label>
-                                            <?php echo form_input($uvicacion); ?>
+                                            <label>Ubicacion</label>
+                                            <?php echo form_input($ubicacion); ?>
                                         </div>
                                     </div>
 

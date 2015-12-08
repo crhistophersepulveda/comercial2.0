@@ -14,12 +14,14 @@ public function Index (){
 		$datos['modificar'] = $lista_articulo;
 		$this->load->view("Articulo/modificarArticulo",$datos);
 	}
-
 	public function modificararticulo(){
 		
-		$idProducto = $this->uri->segment(3);
-		$this->modelo_model->borrar_producto($idProducto);
-		redirect("index.php/modificar/modificararticulo");
+				$idProducto = $this->input->post('idProducto');
+                $descripcion = $this->input->post('descripcion');
+                //ahora procesamos los datos hacía el modelo que debemos crear
+                $modificar_articulo = $this->Articulos->Modificar_articulo($idProducto, $descripcion);
+                redirect('index.php/modificar/modificararticulo');
+        
 	}
 }
 

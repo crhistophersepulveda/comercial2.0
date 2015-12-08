@@ -22,7 +22,6 @@ class modificarProveedor extends CI_Controller{
 		$rut = $this->input->post('rut');
                 $razon_social = $this->input->post('razon_social');        
                 $contacto = $this->input->post('contacto');                            
-                
                 $direccion = $this->input->post('direccion');                            
                 $celular = $this->input->post('celular');
                 $correo = $this->input->post('correo');

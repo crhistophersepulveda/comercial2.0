@@ -33,27 +33,26 @@ class Articulos extends CI_Model
         $this->db->insert('Producto',$data);
     }
 
-    function Modificar_vendedor($idProducto, $descripcion, $uvicacion, $stock, $stock_minimo, $fecha_compra, $costo, $ferretera, $especialista, $constructora,$Proveedor_rut,$Marca_Marca, $Rubro_Rubro, $Unidad_Unidad ){
+    function Modificar_articulo($idProducto, $descripcion){
         $data = array(
-            
             'idProducto' => $idProducto,
             'descripcion' => $descripcion,
-            'ubicacion' => $uvicacion,
-            'stock' => $stock,
-            'stock_minimo' => $stock_minimo,
-            'fecha_compra' => $fecha_compra,
-            'costo' => $costo,
-            'ferretera' => $ferretera,
-            'especialista' => $especialista,
-            'constructora' => $constructora,
+            'ubicacion' => "x",
+            'stock' => "x",
+            'stock_minimo' => "x",
+            'fecha_compra' => "x",
+            'costo' => "x",
+            'ferretera' => "x",
+            'especialista' => "x",
+            'constructora' => "x",
             'campo1' => " X ",
             'campo2' => " X ",
             'campo3' => " X ",
             'campo4' => " X ",
-            'Proveedor_rut' => $Proveedor_rut,
-            'Marca_Marca' => $Marca_Marca,
-            'Rubro_Rubro' => $Rubro_Rubro,
-            'Unidad_Unidad' => $Unidad_Unidad,
+            'Proveedor_rut' => "1",
+            'Marca_Marca' => "1",
+            'Rubro_Rubro' => "ALMACEN",
+            'Unidad_Unidad' => "1",
         );
         $query = $this->db->where('idProducto', $idProducto);
         $query = $this->db->update('Producto', $data);

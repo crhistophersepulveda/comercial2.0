@@ -94,7 +94,7 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
+                                    <a href="<?php echo base_url() ?>index.php/ingresarArticulo"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificararticulo"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -324,17 +324,16 @@
                                     </thead>
                                     <tbody>
                                        <?php 
-                                        
                                      foreach ($modificar-> result() as $modificars){
                                             echo "  
                                             <tr>
                                             <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/borrarArticulo/borrar_producto'>
                                                 <td><input type='hidden' value='$modificars->idProducto' name='valor_enviar'>$modificars->idProducto</input></td>
-                                                <<td>$modificars->descripcion</td>
-                                                    <td>$modificars->costo</td>
-                                                    <td>$modificars->ferretera</td>
-                                                    <td>$modificars->especialista</td>
-                                                    <td>$modificars->constructora</td>
+                                                <td>$modificars->descripcion</td>
+                                                <td>$modificars->descripcion</td>
+                                                <td>$modificars->descripcion</td>
+                                                <td>$modificars->descripcion</td>
+                                                <td>$modificars->descripcion</td>
                                                 <td>
                                                 <button type='button' class='btn btn-primary btn-circle' data-toggle='modal' data-target='#2$modificars->idProducto' > <i class='fa fa-list'></i></button>
                                                 </td>
@@ -349,7 +348,7 @@
                                                                     <h4 class='modal-title' id='myModalLabel'>¡Atención!</h4>
                                                                 </div>
                                                                 <div class='modal-body'>
-                                                                ¿Seguro que deseas <b>Eliminar</b>?    
+                                                                ¿Seguro que deseas <b>Eliminar</b>, esta acción es irreversible?    
                                                                 </div>
                                                                 <div class='modal-footer'>
                                                                     <button type='submit' class='btn btn-primary' value='Eliminar'>Confirmar</button>
@@ -358,7 +357,7 @@
                                                             </div>
                                                         </div>
                                                     </div> 
-                                                  </form>
+                                                </form>
 
 
                                                     <div class='modal fade in' id='2$modificars->idProducto' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true' style='display: none;''>
@@ -366,43 +365,21 @@
                                                             <div class='modal-content'>
                                                                 <div class='modal-header'>
                                                                     <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>×</button>
-                                                                    <h4 class='modal-title' id='myModalLabel'>Menu Modificar</h4>
+                                                                    <h4 class='modal-title' id='myModalLabel'>Modificar Articulo</h4>
                                                                 </div>
                                                                 <div class='modal-body'>
-                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/modificarVendedor/modificarvendedor'>
+                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/modificarArticulo/modificararticulo'>
                                                                         
                                                                         <div class='row'>
-                                                                              <label style='margin-left: 15px'>   Rut: $modificarv->rut</label>
-                                                                              <input type='hidden' value='$modificarv->rut' name='rut'>
-                                                                              <label style='margin-left: 15px'>   Nombre: $modificarv->nombre</label>
-                                                                              <input type='hidden' value='$modificarv->nombre' name='nombre'>
-                                                                         </div>
-                                                                         <br/>
-                                                                         <div class='row'>
-                                                                             
-                                                                                 <label style='margin-left:15px'>Dirección: </label>
-                                                                                <input style ='margin-left:10px'value='$modificarv->direccion' class='form-control' name='direccion'/>
-                                                                                
-                                                                         </div>
-
-                                                                         <br/>
-                                                                        <div class='row'>
-                                                                                 <label style='margin-left: 15px' >Celular: </label>
-                                                                                <input style ='margin-left:27px' value='$modificarv->celular' class='form-control' name='celular'/>
-                                                                                 <label style='margin-left: 15px'>Correo: </label>
-                                                                                <input style ='margin-left:37px' value='$modificarv->correo' class='form-control' name='correo'/>
-
-                                                                         </div>
-                                                                         <br/>
-
-                                                                         <div class='row'>
-                                                                                 <label style='margin-left: 15px' >Comisión: </label>
-                                                                                <input style ='margin-left:13px' value='$modificarv->comision' class='form-control' name='comision'/>
-                                                                                 <label style='margin-left: 15px'>Sueldo Base: </label>
-                                                                                <input value='$modificarv->sueldo_base' class='form-control' name='sueldo_base'/>
-                                                                         </div>
-                                                                 
+                                                                              <label style='margin-left: 15px'>   Rut: $modificars->idProducto</label>
+                                                                              <input type='hidden' value='$modificars->idProducto' name='idProducto'>
+                                                                              <label style='margin-left: 30px'>Descripcion: </label>
+                                                                              <input style ='margin-left:27px' value='$modificars->descripcion' class='form-control' name='descripcion'/>
                                                                         </div>
+                                                                        <br/>
+                                                                        
+
+                                                                        
                                                                         <div class='modal-footer'>
                                                                             <button type='submit' class='btn btn-primary' value='Eliminar'>Modificar</button>
                                                                         </div>
@@ -418,7 +395,6 @@
                                     ?>
                                     </tbody>
                                 </table>
-                                <input type='file'></input>
                             </div>
                             <!-- /.table-responsive -->
                         </div>
