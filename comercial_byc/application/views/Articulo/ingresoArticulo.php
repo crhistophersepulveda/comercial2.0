@@ -471,7 +471,7 @@
                                              <div class="form-group input-group">
                                                 <?php echo form_input($fecha_compra); ?>
                                             </div>
-                                        </div>  
+                                        </div> 
                                     </div>
 
 

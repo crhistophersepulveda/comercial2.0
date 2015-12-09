@@ -1,46 +1,42 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>Comercial B & C</title> <!--Titulo pestaña-->
-    <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <title>Comercial B & C</title> <!--Titulo pestaña-->
+        <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href=<"?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+        <!-- MetisMenu CSS -->
+        <link href="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS -->
-    <link href="<?php echo base_url(); ?>assets/dist/css/timeline.css" rel="stylesheet">
+        <!-- Timeline CSS -->
+        <link href="<?php echo base_url(); ?>assets/dist/css/timeline.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="<?php echo base_url(); ?>assets/dist/css/sb-admin-2.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="<?php echo base_url(); ?>assets/dist/css/sb-admin-2.css" rel="stylesheet">
 
 
-    <!-- Custom Fonts -->
-    <link href="<?php echo base_url(); ?>assets//bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+        <!-- Custom Fonts -->
+        <link href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <![endif]-->        <!-- Bootstrap Core CSS -->
 
+    </head>
 
+    <body>
 
-
-</head>
-
-<body>
-
-    <div id="wrapper">
+        <div id="wrapper">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -83,7 +79,8 @@
             <!-- /.navbar-top-links -->
             <!--MODULO DERECHO AQUIIIIII ABAJO-->
 
-         
+       
+        
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -153,7 +150,8 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                                    <!--Direccionar a la funcion index del controlador ingresar clientes-->
+                                    <a href="<?php echo base_url() ?>index.php/ingresarCliente/Index"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificarcliente"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -304,246 +302,317 @@
                                 </li>
                             </ul>
                         </li>
-
-
-
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-
-
-
-
-
-
         </nav>
-    </div>
+        </div>
+        
+        <!--******************************************************************************************************************-->
+        <!--************************************************** SEGEMENTO DE LA VISTA ****************************************************************-->
+        <!--******************************************************************************************************************-->
+   
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ingreso Factura</h1>
+                    <h1 class="page-header">Ingreso Cliente</h1>
                 </div>
-                <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                           
-                        </div>
-                        <div class="panel-body">
+               
+            <div class="row"><!-- 2 -->
+                <div class="col-lg-12"><!-- 3 -->
+                    <div class="panel panel-default" ><!-- 4 -->
+                        <?=form_open('/index.php/ingresarCliente/ingresarcliente"');
+                            //aqui se procesará nuestro formulario, controlador comentarios, función insertar_comentarios
+                            //creamos los arrays que compondran nuestro formulario
+                            //primer array con el input que se llamará nombre y será donde introduciremos el mismo
+                            $N_factura = array(
+                                'name' => 'N_factura',
+                                'id' => 'N_factura',
+                             
+                                'class'=>'form-control' // darla la clade de boobtstrap
+                            );
+             
+                            //el segundo array(campo email)
+             
+                            $Fecha_venta = array(
+                                'name' => 'Fecha_venta',
+                                'id' => 'Fecha_venta',
+                          
+                                'class'=>'form-control'
+                            );
+             
+                            //el tercero...(campo asunto)
+                            $direccion_cliente = array(
+                                'name' => 'direccion_cliente',
+                                'id' => 'direccion_cliente',
+                                
+                                'class'=>'form-control',
+                                'value' => $Dir
+                            );
+
+                            $celular_cliente = array(
+                                'name' => 'direccion_cliente',
+                                'id' => 'direccion_cliente',
+                               
+                                'class'=>'form-control',
+                                'value' => $Cel
+                            );
+             
+                            //el cuarto...(campo mensaje)
+                            $condicion_pago = array(
+                                'name' => 'condicion_pago',
+                                'id' => 'condicion_pago',
+                                'class'=>'form-control',
+                                'value' => $cPago
+                            );
+
+                            $cliente_rut = array(
+                                'name' => 'cliente_rut',
+                                'id' => 'cliente_rut',
+                                'class'=>'form-control',
+                                'value' => $rCliente
+                            );
+
+                            $cliente_nombre = array(
+                                'name' => 'cliente_nombre',
+                                'id' => 'cliente_nobmre',
+                                'class'=>'form-control',
+                                'value' => $rSocial
+                            );
                             
-                            <form role="form">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <label>Nº Factura</label>
-                                        <input class="form-control" />
+                            $lista_precio = array(
+                                'name' => 'lista_precio',
+                                'id' => 'lista_precio',
+                                'class'=>'form-control',
+                                'value' => $lPrecios
+                            );
+
+                            $Vendedor = array(
+                                'name' => 'Vendedor',
+                                'id' => 'Vendedor',
+                                'class'=>'form-control',
+                                'value' => $dVendedor
+                            );
+
+                            $Neto = array(
+                                'name' => 'Neto',
+                                'id' => '$Neto',
+                                'class'=>'form-control'
+                            );
+
+                            $Iva = array(
+                                'name' => 'Iva',
+                                'id' => 'Iva',
+                                'class'=>'form-control'
+                            );
+
+                            $Descuento = array(
+                                'name' => 'Descuento',
+                                'id' => 'Descuento',
+                                'class'=>'form-control'
+                            );
+
+                            $Total = array(
+                                'name' => 'Total',
+                                'id' => 'Total',
+                                'class'=>'form-control'
+                            );
+
+                            $Fecha_pago = array(
+                                'name' => 'Fecha_pago',
+                                'id' => 'Fecha_pago',
+                                'class'=>'form-control'
+                            );
+
+                            //el botón submit de nuestro formulario se le da la clase para quedar con boobtstrap
+                            $submit = array(
+                                'name' => 'submit',
+                                'id' => 'submit',
+                                'class'=>'btn btn-default',
+                                'value' => 'Facturar',
+                                'title' => 'Facturar'
+                            );
+                        ?>
+
+                        <div class="panel panel-default"  ><!-- 5 -->
+
+                            <div class="panel-heading">
+                                Datos de facturacion
+                            </div>
+
+                            <div class="panel-body"><!-- 6 -->
+                                <form >
+                                    <!-- Mensajes de error :D -->
+                                    <?php echo validation_errors(); ?>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Factura nº :</label>
+                                            <?php echo form_input($N_factura); ?>
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-0">
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <label>Vendedor</label>
-                                        <select class="form-control">
-                                            <option></option>
-                                            <option>Marcelo</option>
-                                            <option>Juan</option>
-                                            <option>Brad</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <label>Lista Precio</label>
-                                        <select class="form-control">
-                                            <option>Ferretera</option>
-                                            <option>Especialista</option>
-                                            <option>Constructora</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <label>Fecha</label>
-                                        <input class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <br />
-                                    <div class="col-md-2">
-                                        <label>Cod. Cliente</label>
-                                        <input class="form-control" />
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label>Razón Social</label>
-                                        <input class="form-control" />
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label>Dirección</label>
-                                        <input class="form-control" />
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <label>Rut</label>
-                                        <input class="form-control" />
-                                    </div>
-
-
-                                </div>
-                                <div class="row">
-                                    <br />
-                                    <div class="col-md-2">
-                                        <label>Cond. Pago</label>
-                                        <select class="form-control">
-                                            <option>Efectivo</option>
-                                            <option>Debito</option>
-                                            <option>Cheque</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <label>Descuento</label>
-                                        <input class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class=" row">
-                                    <br />
-                                    <div class="col-md-4">
-                                        <label>Codigo Producto</label>
-                                        
-                                        <div class="form-group input-group"><input type="text" class="form-control" >
-                                            
-                                            
+                                    <div class="row">
+                                        <br />
+                                        <div class="col-md-3">
+                                            <label>Rut Cliente :</label>
+                                            <div class="form-group input-group">
+                                            <?php echo form_input($cliente_rut); ?>
                                             <span class="input-group-btn">
-                                              
-                                                <button class="btn btn-default" type="button">
-                                                    <i class="fa fa-search"></i>
+                                                <button class="btn btn-default" type="button" data-toggle='modal' data-target='#Clientes'><i class="fa fa-search"></i>
                                                 </button>
                                             </span>
                                         </div>
                                         </div>
-                                    </div>
-                                
-                                <br />
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Codigo</th>
-                                                <th>Cantidad</th>
-                                                <th>Descripción</th>
-                                                <th>Precio</th>
-                                                <th>Total</th>
-                                                <th>Opciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>00001-T</td>
-                                                <td>2</td>
-                                                <td>Producto 1</td>
-                                                <td>1000</td>
-                                                <td>2000</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary btn-circle"> <i class="fa fa-list"></i></button>
-                                                    <button type="button" class="btn btn-warning btn-circle"> <i class="fa fa-times"></i></button>
-
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td>00002-T</td>
-                                                <td>3</td>
-                                                <td>Producto 2</td>
-                                                <td>1000</td>
-                                                <td>3000</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary btn-circle"> <i class="fa fa-list"></i></button>
-                                                    <button type="button" class="btn btn-warning btn-circle"> <i class="fa fa-times"></i></button>
-
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                            <tr>
-                                                <td>00005-T</td>
-                                                <td>5</td>
-                                                <td>Producto 5</td>
-                                                <td>1000</td>
-                                                <td>5000</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary btn-circle"> <i class="fa fa-list"></i></button>
-                                                    <button type="button" class="btn btn-warning btn-circle"> <i class="fa fa-times"></i></button>
-
-                                                </td>
-
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover" style="width:200px">
-                                        
-                                            <tr>
-                                                <td><label>Neto</label></td>
-                                                <td><label>$10.000</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label>Dcto.</label></td>
-                                                <td><label>$0</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td><label>Total.</label></td>
-                                                <td><label>$11.900</label></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-
-
-
-
-
-                                        <div class="row">
-                                            <br />
-                                            <div class="col-md-3">
-                                                <button type="submit" class="btn btn-default">Facturar</button>
-                                            </div>
-                                            <div id="dialog" title="Titulo dialog" style="display:none;">
-                                                <p>Accepto.</p>
-                                            </div>
-                                            <a href="javascript:abrir('HtmlPage.html')">Enlace</a> 
-                                           
-                                            <div class="col-md-3">
-                                                <button type="submit" class="btn btn-default">Cancelar</button>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <label>Nombre o razon social :</label>
+                                             <?php echo form_input($cliente_nombre); ?>
                                         </div>
+                                        <div class="col-md-3">
+                                            <label>Condicion de pago: </label>
+                                            <?php echo form_input($condicion_pago); ?>
+                                        </div> 
+                                    </div>
 
-                            </form>
-                            
-                      
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+
+                                    <div class="row">
+                                        <br />
+                                        <div class="col-md-5">
+                                            <label>Direccion: </label>
+                                            <?php echo form_input($direccion_cliente); ?>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Celular</label>
+                                            <?php echo form_input($celular_cliente); ?>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Lista de Precio</label>
+                                            <?php echo form_input($lista_precio); ?>
+                                        </div>
+                                    </div> 
+
+                                    <div class="row">
+                                        <br />
+                                        <div class="col-md-4">
+                                            <label>Vendedor</label>
+                                             <?php echo form_input($Vendedor); ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <br />
+                                        <div class="col-md-3">
+                                            <?php echo form_submit($submit);?>
+                                        </div>
+                                    </div>  
+                                 </form>
+
+
+                                <!-- Modal de clientes -->
+                                
+                                    <div class="modal fade in" id="Clientes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel">Lista de Clientes </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="panel panel-default">
+                                                        <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            <div class="dataTable_wrapper">
+                                                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                                                  
+                                                                    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th>Rut</th>
+                                                                                <th>Razón Social</th>
+                                                                                <th>Lista Precio</th>
+                                                                                <th>Seleccionar</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <?php
+                                                                            $sql=$this->db->query("select * from Cliente");
+
+                                                                            foreach ($sql-> result() as $listacliente){
+                                                                                  
+                                                                            echo "
+                                                                                    
+                                                                            <tr>
+                                                                                                      
+                                                                                <td>$listacliente->rut</td>
+                                                                                <td>$listacliente->nombre_razon</td>
+                                                                                <td>$listacliente->Lista_precios_Lista_precio</td>
+                                                                                            
+                                                                                <td>
+                                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/ingresarFactura/cargar_cliente'> 
+
+                                                                                        <input type='hidden' value='$listacliente->rut' name='valor_rut'/input>
+
+                                                                                        <input type='hidden' value='$listacliente->nombre_razon' name='valor_nombre_razon'/input>
+
+                                                                                        <input type='hidden' value='$listacliente->Lista_precios_Lista_precio' name='valor_Lista_precios_Lista_precio'/input>
+
+                                                                                        <input type='hidden' value='$listacliente->Vendedor_rut' name='valor_vendedor'/input>
+
+                                                                                        <input type='hidden' value='$listacliente->direccion' name='valor_direccion'/input>
+
+                                                                                        <input type='hidden' value='$listacliente->condicion_pago' name='valor_condicion_pago'/input>
+
+                                                                                        <input type='hidden' value='$listacliente->celular' name='valor_celular'/input>
+                                                                                            
+                                                                                        <button type='submit' class='btn btn-info btn-circle' d > <i class='fa fa-check'></i></button>
+                                                                                   </form>    
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            ";
+                                                                        }
+                                                                         ?>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.table-responsive -->
+                                                        </div>
+                                                        <!-- /.panel-body -->
+                                                    </div>  
+                                                </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                         </div>
+                                      </div>                                    
+                                    </div>
+
+                                
+                             <!-- Modal de clientes -->
+                            </div><!-- 6 -->
+                        </div><!-- 5 -->      
+                    </div><!-- 4 -->
+                </div><!-- 3 -->
+            </div><!-- 2 -->
+        </div><!-- 1 -->
+        <!-- jQuery -->
+    <script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="<?php echo base_url(); ?>assets/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-</body>
+    <script src="<?php echo base_url(); ?>assets/dist/js/sb-admin-2.js"></script>
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 </html>

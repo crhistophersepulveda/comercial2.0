@@ -17,7 +17,7 @@ class Clientes extends CI_Model
             'comuna' => $comuna,
             'ciudad' => $ciudad,
             'rubro' => $rubro,
-            'correo' => $coreo,
+            'correo' => $correo,
             'telefono' => $telefono,
             'celular' => $celular,
             'web' => $web,
