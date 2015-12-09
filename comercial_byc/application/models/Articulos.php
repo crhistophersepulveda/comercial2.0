@@ -8,12 +8,12 @@ class Articulos extends CI_Model
 
     // funcionde insercion los nombres es comillas simples son los de la base de datos 
 
-    function Ingresar_articulo($idProducto, $descripcion, $uvicacion, $stock, $stock_minimo, $fecha_compra, $costo, $ferretera, $especialista, $constructora,$Proveedor_rut,$Marca_Marca, $Rubro_Rubro, $Unidad_Unidad ){
+    function Ingresar_articulo($idProducto, $descripcion, $ubicacion, $stock, $stock_minimo, $fecha_compra, $costo, $ferretera, $especialista, $constructora,$Proveedor_rut,$Marca_Marca, $Rubro_Rubro, $Unidad_Unidad ){
         $data = array(
 
             'idProducto' => $idProducto,
             'descripcion' => $descripcion,
-            'ubicacion' => $uvicacion,
+            'ubicacion' => $ubicacion,
             'stock' => $stock,
             'stock_minimo' => $stock_minimo,
             'fecha_compra' => $fecha_compra,

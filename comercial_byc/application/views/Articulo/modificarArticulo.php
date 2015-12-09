@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -324,6 +324,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                       
                                        <?php 
                                      foreach ($modificar-> result() as $modificars){
                                         $sql1=$this->db->query("select distinct(pr.rut), pr.razon_social from Proveedor pr, Producto p where pr.rut = p.Proveedor_rut and p.Proveedor_rut = '$modificars->Proveedor_rut'");
