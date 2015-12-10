@@ -100,7 +100,7 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
+                                    <a href="<?php echo base_url() ?>index.php/ingresarArticulo"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificararticulo"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -198,6 +198,17 @@
                             <li>
                                 <a href="<?php echo base_url() ?>index.php/buscar/buscarProveedor"><i class="fa fa-search-plus"></i> Buscar<span class="fa arrow"></span></a>
                             </li>
+                           
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-book"></i> Caja Chica<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url() ?>index.php/ingresarCaja"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                            </li>
+                            
                            
                         </ul>
                     </li>
@@ -303,6 +314,24 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i>Caja Chica<span class="fa arrow"></span></a>
+
+                                    <ul class="nav nav-third-level">
+                                        
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Ingreso">Ingresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Egreso">Egresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/CajaTotal">Caja Total</a>
+                                        </li>
+                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -318,13 +347,13 @@
    
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-9">
                     <h1 class="page-header">Caja Chica</h1>
                 </div>
             </div>
                
             <div class="row"><!-- 2 -->
-                <div class="col-lg-12"><!-- 3 -->
+                <div class="col-lg-9"><!-- 3 -->
                     <div class="panel panel-default" ><!-- 4 -->
                         <?=form_open('/index.php/ingresarCaja/ingresarcaja');
                             $Codigo = array(
@@ -382,10 +411,8 @@
                                 <form >
                                     <?php echo validation_errors(); ?>
                                     <div class="row">
-                                        <div class="alert alert-success" style='display:block'>
-                                        ¡<b>Registro exitoso</b>!
-                                        </div>
-                                        <div class="col-md-2">
+                                        
+                                        <div style='margin-left:50px;width:100px'>
                                             <label>Fecha</label>
                                             <?php echo form_input($fecha); ?>
                                         </div>
@@ -395,21 +422,22 @@
 
                                     <div class="row">
                                         <br />
-                                        <div class="col-md-5">
+                                        <div style='margin-left:50px;width:300px'>
                                             <label>Descripción</label>
                                             <?php echo form_input($descripcion); ?>
                                         </div>
                                     </div>
                                     <div class='row'>
                                         <br/>
-                                        <div class="col-md-2">
+                                        <div style='margin-left:50px;width:100px'>
                                             <label>Operación</label>
                                             <select class="form-control" name="operacion" >
                                                 <option>INGRESO</option>
                                                 <option>EGRESO</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-2">
+                                        <br/>
+                                        <div style='margin-left:50px;width:100px'>
                                             <label>Total</label>
                                             <?php echo form_input($total); ?>
                                         </div>
@@ -419,10 +447,13 @@
 
                                     <div class="row">
                                         <br />
-                                        <div class="col-md-3">
+                                        <div style='margin-left:50px;width:100px'>
                                             <?php echo form_submit($submit);?>
                                         </div>
-                                    </div>       
+                                    </div>   
+
+                                    
+  
                                 </form> 
                             </div><!-- 6 -->
                              

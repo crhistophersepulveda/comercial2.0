@@ -39,46 +39,47 @@
     <div id="wrapper">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">COMERCIAL B & C LIMITADA</a>
-        </div>
-        <!-- /.navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">COMERCIAL B & C LIMITADA</a>
+            </div>
+            <!-- /.navbar-header -->
 
-        <ul class="nav navbar-top-links navbar-right">
+            <ul class="nav navbar-top-links navbar-right">
 
-            <!-- /.dropdown -->
+                <!-- /.dropdown -->
 
 
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li>
-                        <a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-gear fa-fw"></i> Opciones</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Desconectar</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-        <!--MODULO DERECHO AQUIIIIII ABAJO-->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Opciones</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Desconectar</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+            <!--MODULO DERECHO AQUIIIIII ABAJO-->
 
-      
+       
+        
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -95,7 +96,7 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
+                                    <a href="<?php echo base_url() ?>index.php/ingresarArticulo"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificararticulo"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -148,7 +149,8 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                                    <!--Direccionar a la funcion index del controlador ingresar clientes-->
+                                    <a href="<?php echo base_url() ?>index.php/ingresarCliente/Index"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificarcliente"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -192,6 +194,17 @@
                             <li>
                                 <a href="<?php echo base_url() ?>index.php/buscar/buscarProveedor"><i class="fa fa-search-plus"></i> Buscar<span class="fa arrow"></span></a>
                             </li>
+                           
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-book"></i> Caja Chica<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url() ?>index.php/ingresarCaja"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                            </li>
+                            
                            
                         </ul>
                     </li>
@@ -297,22 +310,31 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i>Caja Chica<span class="fa arrow"></span></a>
+
+                                    <ul class="nav nav-third-level">
+                                        
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Ingreso">Ingresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Egreso">Egresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/CajaTotal">Caja Total</a>
+                                        </li>
+                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
                             </ul>
                         </li>
-
-
-
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-
-
-
-
-
-
-    </nav>
+        </nav>
     
         <div id="page-wrapper">
             <div class="row">

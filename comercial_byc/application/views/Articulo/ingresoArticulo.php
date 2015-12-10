@@ -100,7 +100,7 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
+                                    <a href="<?php echo base_url() ?>index.php/ingresarArticulo"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificararticulo"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -198,6 +198,17 @@
                             <li>
                                 <a href="<?php echo base_url() ?>index.php/buscar/buscarProveedor"><i class="fa fa-search-plus"></i> Buscar<span class="fa arrow"></span></a>
                             </li>
+                           
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-book"></i> Caja Chica<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url() ?>index.php/ingresarCaja"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                            </li>
+                            
                            
                         </ul>
                     </li>
@@ -300,6 +311,24 @@
                                         <li>
                                             <a href="#">Ventas por Vendedor Detalle </a>
                                         </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i>Caja Chica<span class="fa arrow"></span></a>
+
+                                    <ul class="nav nav-third-level">
+                                        
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Ingreso">Ingresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Egreso">Egresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/CajaTotal">Caja Total</a>
+                                        </li>
+                                        
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>

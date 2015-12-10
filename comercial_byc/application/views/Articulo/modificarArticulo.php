@@ -37,47 +37,47 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="index.html">COMERCIAL B & C LIMITADA</a>
-        </div>
-        <!-- /.navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">COMERCIAL B & C LIMITADA</a>
+            </div>
+            <!-- /.navbar-header -->
 
-        <ul class="nav navbar-top-links navbar-right">
+            <ul class="nav navbar-top-links navbar-right">
 
-            <!-- /.dropdown -->
-
-
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li>
-                        <a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-gear fa-fw"></i> Opciones</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Desconectar</a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-user -->
-            </li>
-            <!-- /.dropdown -->
-        </ul>
-        <!-- /.navbar-top-links -->
-        <!--MODULO DERECHO AQUIIIIII ABAJO-->
+                <!-- /.dropdown -->
 
 
-    
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Opciones</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Desconectar</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+            <!--MODULO DERECHO AQUIIIIII ABAJO-->
+
+       
+        
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -147,7 +147,8 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                                    <!--Direccionar a la funcion index del controlador ingresar clientes-->
+                                    <a href="<?php echo base_url() ?>index.php/ingresarCliente/Index"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificarcliente"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -194,6 +195,17 @@
                            
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-book"></i> Caja Chica<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url() ?>index.php/ingresarCaja"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                            </li>
+                            
+                           
+                        </ul>
+                    </li>
                         <!--7to Reportes-->
 
                         <li>
@@ -210,8 +222,11 @@
                                         <li>
                                             <a href="#">Lista de Artículos Detallado</a>
                                         </li>
+
                                     </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
+
                                 <li>
                                     <a href="#"><i class="fa fa-shopping-cart"></i> Ventas<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -233,6 +248,9 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+
+
+
                                 <li>
                                     <a href="#"><i class="fa fa-shopping-cart"></i> Compras<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
@@ -256,6 +274,7 @@
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
+
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="#">Lista Clientes</a>
@@ -263,11 +282,13 @@
                                         <li>
                                             <a href="#">Clientes Frecuentes</a>
                                         </li>
+
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-user fa-fw"></i>Vendedores<span class="fa arrow"></span></a>
+
                                     <ul class="nav nav-third-level">
                                         <li>
                                             <a href="#">Lista Vendedores</a>
@@ -287,13 +308,31 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i>Caja Chica<span class="fa arrow"></span></a>
+
+                                    <ul class="nav nav-third-level">
+                                        
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Ingreso">Ingresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Egreso">Egresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/CajaTotal">Caja Total</a>
+                                        </li>
+                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-    </nav>
+        </nav>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -329,12 +368,12 @@
                                      foreach ($modificar-> result() as $modificars){
                                         $sql1=$this->db->query("select distinct(pr.rut), pr.razon_social from Proveedor pr, Producto p where pr.rut = p.Proveedor_rut and p.Proveedor_rut = '$modificars->Proveedor_rut'");
                                         $sql2=$this->db->query("select distinct(pr.rut), pr.razon_social from Proveedor pr, Producto p where pr.rut <> p.Proveedor_rut and p.Proveedor_rut = '$modificars->Proveedor_rut'");
-                                        $sql3=$this->db->query("select M.Marca from Marca M, Producto p where M.Marca = p.Marca_Marca and p.Marca_Marca = '$modificars->Marca_Marca'");
-                                        $sql4=$this->db->query("select M.Marca from Marca M, Producto p where M.Marca <> p.Marca_Marca and p.Marca_Marca = '$modificars->Marca_Marca'");
-                                        $sql5=$this->db->query("select r.Rubro from Rubro r, Producto p where r.Rubro = p.Rubro_Rubro and p.Rubro_Rubro = '$modificars->Rubro_Rubro'");
-                                        $sql6=$this->db->query("select r.Rubro from Rubro r, Producto p where r.Rubro <> p.Rubro_Rubro and p.Rubro_Rubro = '$modificars->Rubro_Rubro'");
-                                        $sql7=$this->db->query("select u.Unidad from Unidad u, Producto p where u.Unidad = p.Unidad_Unidad and p.Unidad_Unidad = '$modificars->Unidad_Unidad'");
-                                        $sql8=$this->db->query("select u.Unidad from Unidad u, Producto p where u.Unidad <> p.Unidad_Unidad and p.Unidad_Unidad = '$modificars->Unidad_Unidad'");
+                                        $sql3=$this->db->query("select distinct(M.Marca) from Marca M, Producto p where M.Marca = p.Marca_Marca and p.Marca_Marca = '$modificars->Marca_Marca'");
+                                        $sql4=$this->db->query("select distinct(M.Marca) from Marca M, Producto p where M.Marca <> p.Marca_Marca and p.Marca_Marca = '$modificars->Marca_Marca'");
+                                        $sql5=$this->db->query("select distinct(r.Rubro) from Rubro r, Producto p where r.Rubro = p.Rubro_Rubro and p.Rubro_Rubro = '$modificars->Rubro_Rubro'");
+                                        $sql6=$this->db->query("select distinct(r.Rubro) from Rubro r, Producto p where r.Rubro <> p.Rubro_Rubro and p.Rubro_Rubro = '$modificars->Rubro_Rubro'");
+                                        $sql7=$this->db->query("select distinct(u.Unidad) from Unidad u, Producto p where u.Unidad = p.Unidad_Unidad and p.Unidad_Unidad = '$modificars->Unidad_Unidad'");
+                                        $sql8=$this->db->query("select distinct(u.Unidad) from Unidad u, Producto p where u.Unidad <> p.Unidad_Unidad and p.Unidad_Unidad = '$modificars->Unidad_Unidad'");
                                         
 
                                         echo "  

@@ -16,7 +16,7 @@ public function Index (){
 	}
 	public function modificararticulo(){
 		
-				$idProducto = $this->input->post('idProducto');
+	       $idProducto = $this->input->post('idProducto');
                 $descripcion = $this->input->post('descripcion');
                 $ubicacion = $this->input->post('ubicacion');
                 $stock = $this->input->post('stock');

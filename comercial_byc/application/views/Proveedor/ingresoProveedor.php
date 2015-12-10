@@ -76,7 +76,8 @@
             <!-- /.navbar-top-links -->
             <!--MODULO DERECHO AQUIIIIII ABAJO-->
 
-            
+       
+        
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -93,7 +94,7 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
+                                    <a href="<?php echo base_url() ?>index.php/ingresarArticulo"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificararticulo"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -141,7 +142,7 @@
                         </li>
 
 
-                          <!--4to Clientes-->
+                        <!--4to Clientes-->
                                        <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -158,7 +159,6 @@
                                 
                             </ul>
                         </li>
-
 
 
                         <!--5to Vendedor-->
@@ -192,6 +192,17 @@
                             <li>
                                 <a href="<?php echo base_url() ?>index.php/buscar/buscarProveedor"><i class="fa fa-search-plus"></i> Buscar<span class="fa arrow"></span></a>
                             </li>
+                           
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-book"></i> Caja Chica<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url() ?>index.php/ingresarCaja"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                            </li>
+                            
                            
                         </ul>
                     </li>
@@ -297,17 +308,31 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i>Caja Chica<span class="fa arrow"></span></a>
+
+                                    <ul class="nav nav-third-level">
+                                        
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Ingreso">Ingresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Egreso">Egresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/CajaTotal">Caja Total</a>
+                                        </li>
+                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
                             </ul>
                         </li>
-
-
-
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-
-            </nav>
+        </nav>
         </div>
 
      <!--******************************************************************************************************************-->

@@ -80,8 +80,8 @@
             <!-- /.navbar-top-links -->
             <!--MODULO DERECHO AQUIIIIII ABAJO-->
 
-           
-      
+       
+        
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -98,7 +98,7 @@
 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
+                                    <a href="<?php echo base_url() ?>index.php/ingresarArticulo"><i class="glyphicon glyphicon-plus-sign"></i>Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificararticulo"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -151,7 +151,8 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i>Clientes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                                    <!--Direccionar a la funcion index del controlador ingresar clientes-->
+                                    <a href="<?php echo base_url() ?>index.php/ingresarCliente/Index"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url() ?>index.php/modificar/modificarcliente"><i class="glyphicon glyphicon-minus-sign"></i> Modificar / Eliminar<span class="fa arrow"></span></a>
@@ -195,6 +196,17 @@
                             <li>
                                 <a href="<?php echo base_url() ?>index.php/buscar/buscarProveedor"><i class="fa fa-search-plus"></i> Buscar<span class="fa arrow"></span></a>
                             </li>
+                           
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-book"></i> Caja Chica<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="<?php echo base_url() ?>index.php/ingresarCaja"><i class="glyphicon glyphicon-plus-sign"></i> Ingresar<span class="fa arrow"></span></a>
+                            </li>
+                            
                            
                         </ul>
                     </li>
@@ -300,26 +312,36 @@
                                     </ul>
                                     <!-- /.nav-third-level -->
                                 </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i>Caja Chica<span class="fa arrow"></span></a>
+
+                                    <ul class="nav nav-third-level">
+                                        
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Ingreso">Ingresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/Egreso">Egresos Detallado</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo base_url() ?>index.php/CajaChica/CajaTotal">Caja Total</a>
+                                        </li>
+                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
                             </ul>
                         </li>
-
-
-
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
-
-
-
-
-
         </nav>
     </div>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Buscar Cliente</h1>
+                    <h1 class="page-header">Caja Chica / Egreso</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -328,7 +350,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Busqueda Cliente
+                           Egresos
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -336,41 +358,24 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>Rut</th>
-                                            <th>Razón Social</th>
-                                            <th>Contacto</th>
-                                            <th>Celular</th>
-                                            <th>Correo</th>
-                                            <th>Vendedor</th>
-                                            <th>Lista Precio</th>
+                                            <th>Fecha</th>
+                                            <th>Descripción</th>
+                                            <th>Total</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
-                                        foreach ($bcliente -> result() as $bclientes){
-                                            //realizo las consultas 
-
-                                            //select para sacar el nombre del vendedor deacuerdo al id del cliente
-                                          $sql=$this->db->query("select nombre from Vendedor where rut='$bclientes->Vendedor_rut'");
-                                          //select para sacar el nombre de la lista de precios deacuerdo al id del cliente.
-                                          $sql2=$this->db->query("select Lista_precio from Lista_precios where Lista_precio = '$bclientes->Lista_precios_Lista_precio'") ;
+                                        $sql1 = $this->db->query("select * from Caja_chica where operacion='EGRESO'");
+                                        foreach ($sql1 -> result() as $eg){
                                             echo "  
                                             <tr>
-                                                <td>$bclientes->rut</td>
-                                                <td>$bclientes->nombre_razon</td>
-                                                <td>$bclientes->contacto</td>
-                                                <td>$bclientes->celular</td>
-                                                <td>$bclientes->correo</td>
+                                                <td>$eg->fecha</td>
+                                                <td>$eg->descripcion</td>
+                                                <td>$eg->total</td>
                                                 
                                                 ";
-                                                //para rescatar el valor de nuestro select
-                                                foreach($sql -> result() as $result){
-                                                echo "<td>$result->nombre</td>";
-                                            }
-                                                foreach($sql2 -> result() as $result2){
-                                                    echo
-                                                    "<td>$result2->Lista_precio</td>";
-                                                }
+                                                
 
                                             }
                                             echo "

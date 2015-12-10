@@ -37,5 +37,8 @@ class Modificar extends CI_Controller{
 		$datos['modificarvendedor'] = $lista_vendedor;
 		$this->load->view("Vendedor/modificarVendedor",$datos);
 	}
+
+
+
 }
 ?>
