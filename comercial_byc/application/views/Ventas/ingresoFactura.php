@@ -316,7 +316,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ingreso Cliente</h1>
+                    <h1 class="page-header">Ingreso Factura</h1>
                 </div>
             </div>
                
@@ -435,11 +435,20 @@
                                 'title' => 'Facturar'
                             );
                         ?>
+                        <?=form_open('/index.php/ingresarArticulo/ingresararticulo"');
+
+                            $idProducto = array(
+                                'name'=>'idProducto',
+                                'id'=>'idProducto',
+                                'class'=>'form-control'
+                            );
+                            
+                        ?>
 
                         <div class="panel panel-default"  ><!-- 5 -->
 
                             <div class="panel-heading">
-                                Datos de facturacion
+                                Datos de Facturación
                             </div>
 
                             <div class="panel-body"><!-- 6 -->
@@ -460,7 +469,7 @@
                                             <div class="form-group input-group">
                                             <?php echo form_input($cliente_rut); ?>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" data-toggle='modal' data-target='#Clientes'><i class="fa fa-search"></i>
+                                                <button class="btn btn-default" type="button" data-toggle='modal' data-target='#Clientes'><i class="fa fa-search" style='height:20px'></i>
                                                 </button>
                                             </span>
                                         </div>
@@ -500,6 +509,48 @@
                                         </div>
                                     </div>
 
+                                    <div class='row'>
+                                        <br/>
+                                        <form method='post' action='/index.php/ingresarArticulo/ingresararticulo');>
+                                        <div class='col-md-3'>
+                                            <label>Codigo Artículo:</label>
+                                            <span class="input-group-btn" >
+                                                
+                                                <button class="btn btn-default" type="button" data-toggle='modal' data-target='#Articulos'><i class="fa fa-search"></i>
+                                                </button>
+                                            </span>
+
+                                        </div>
+                                    </form>
+                                    </div>
+                                    <br/>
+                                    <div class='row'>
+                                            <div class="panel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Cantidad</th>
+                                                                <th>Codigo</th>
+                                                                <th>Descripción</th>
+                                                                <th>Valor</th>
+                                                                <th>Total</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                    </div>
                                     <div class="row">
                                         <br />
                                         <div class="col-md-3">
@@ -542,8 +593,7 @@
                                                                                   
                                                                             echo "
                                                                                     
-                                                                            <tr>
-                                                                                                      
+                                                                            <tr>                     
                                                                                 <td>$listacliente->rut</td>
                                                                                 <td>$listacliente->nombre_razon</td>
                                                                                 <td>$listacliente->Lista_precios_Lista_precio</td>
@@ -573,6 +623,7 @@
                                                                             ";
                                                                         }
                                                                          ?>
+
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -590,6 +641,77 @@
 
                                 
                              <!-- Modal de clientes -->
+
+                             <!-- Modal de Productos -->
+                                    <div class="modal fade in" id="Articulos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel">Lista de Clientes </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="panel panel-default">
+                                                        <!-- /.panel-heading -->
+                                                        <div class="panel-body">
+                                                            <div class="dataTable_wrapper">
+                                                                <div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                                                  
+                                                                    <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example1" role="grid" aria-describedby="dataTables-example_info">
+                                                                        <thead>
+                                                                            <tr role="row">
+                                                                                <th>Codigo</th>
+                                                                                <th>Descripción</th>
+                                                                                <th>P.<?php echo" $lPrecios"?></th>
+                                                                                <th>Seleccionar</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        <?php
+                                                                            $sql1=$this->db->query("select p.*, p.$lPrecios precios from Producto p where p.$lPrecios = $lPrecios ");
+
+                                                                            foreach ($sql1-> result() as $listaprod){
+                                                                                  
+                                                                            echo "
+                                                                                    
+                                                                            <tr>                     
+                                                                                <td>$listaprod->idProducto</td>
+                                                                                <td>$listaprod->descripcion</td>
+                                                                                <td>$listaprod->precios</td>
+                                                                                            
+                                                                                <td>
+                                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/ingresarFactura/cargar_articulo'> 
+
+                                                                                        <input type='hidden' value='$listaprod->idProducto' name='valor_idProducto'/input>
+                                                                                            
+                                                                                        <button type='submit' class='btn btn-info btn-circle' d > <i class='fa fa-check'></i></button>
+                                                                                   </form>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            ";
+                                                                        }
+                                                                         ?>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.table-responsive -->
+                                                        </div>
+                                                        <!-- /.panel-body -->
+                                                    </div>  
+                                                </div>
+                                            <div class="modal-footer">
+                                            </div>
+                                         </div>
+                                      </div>                                    
+                                    </div>
+                               
+
+                            <!-- Modal de Productos -->
+
+
                             </div><!-- 6 -->
                         </div><!-- 5 -->      
                     </div><!-- 4 -->
@@ -611,6 +733,13 @@
     <script>
         $(document).ready(function () {
             $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTables-example1').DataTable({
                 responsive: true
             });
         });

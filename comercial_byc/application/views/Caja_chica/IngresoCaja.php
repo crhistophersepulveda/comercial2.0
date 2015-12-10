@@ -319,88 +319,52 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ingreso Articulo</h1>
+                    <h1 class="page-header">Caja Chica</h1>
                 </div>
             </div>
                
             <div class="row"><!-- 2 -->
                 <div class="col-lg-12"><!-- 3 -->
                     <div class="panel panel-default" ><!-- 4 -->
-                        <?=form_open('/index.php/ingresarArticulo/ingresararticulo');
-                            //aqui se procesará nuestro formulario, controlador comentarios, función insertar_comentarios
-                            //creamos los arrays que compondran nuestro formulario
-                            //primer array con el input que se llamará nombre y será donde introduciremos el mismo
-                            $idProducto = array(
-                                'name' => 'idProducto',
-                                'id' => 'idProducto',
+                        <?=form_open('/index.php/ingresarCaja/ingresarcaja');
+                            $Codigo = array(
+                                'name' => 'Codigo',
+                                'id' => 'Codigo',
                                 'size' => '50',
-                                'class'=>'form-control' // darla la clade de boobtstrap
+                                'class'=>'form-control' 
                             );
-             
-                            //el segundo array(campo email)
-             
                             $descripcion = array(
                                 'name' => 'descripcion',
                                 'id' => 'descripcion',
                                 'size' => '50',
                                 'class'=>'form-control'
                             );
-             
-                            //el tercero...(campo asunto)
-                            $ubicacion = array(
-                                'name' => 'ubicacion',
-                                'id' => 'ubicacion',
+                            $operacion = array(
+                                'name' => 'operacion',
+                                'id' => 'operacion',
                                 'size' => '50',
                                 'class'=>'form-control'
                             );
-             
-                            //el cuarto...(campo mensaje)
-                            $stock = array(
-                                'name' => 'stock',
-                                'id' => 'stock',
-                                'class'=>'form-control'
-                            );
-
-                            $stock_minimo = array(
-                                'name' => 'stock_minimo',
-                                'id' => 'stock_minimo',
+                            $total = array(
+                                'name' => 'total',
+                                'id' => 'total',
                                 'class'=>'form-control'
                             );
                             $this->load->helper('date');
                             $datestring = "%Y/%m/%d ";
                             $time = time();
-                                            
-                            $fecha_compra = array(
-                                'name' => 'fecha_compra',
-                                'id' => 'fecha_compra',
+
+                            $fecha = array(
+                                'name' => 'fecha',
+                                'id' => 'fecha',
                                 'class'=>'form-control',
                                 'value' => mdate($datestring, $time)
                             );
-
-                            $costo = array(
-                                'name' => 'costo',
-                                'id' => 'costo',
+                            $usuario = array(
+                                'name' => 'usuario',
+                                'id' => 'usuario',
                                 'class'=>'form-control'
                             );
-
-                            $ferretera = array(
-                                'name' => 'ferretera',
-                                'id' => 'ferretera',
-                                'class'=>'form-control'
-                            );
-
-                            $especialista = array(
-                                'name' => 'especialista',
-                                'id' => 'especialista',
-                                'class'=>'form-control'
-                            );
-
-                            $constructora = array(
-                                'name' => 'constructora',
-                                'id' => 'constructora',
-                                'class'=>'form-control'
-                            );
-                            //el botón submit de nuestro formulario se le da la clase para quedar con boobtstrap
                             $submit = array(
                                 'name' => 'submit',
                                 'id' => 'submit',
@@ -408,129 +372,51 @@
                                 'value' => 'Guardar',
                                 'title' => 'Guardar'
                             );
-
-
                         ?>
 
-                        <div class="panel panel-default"  ><!-- 5 -->
+                       <!-- 5 -->
 
-                            <div class="panel-heading">
-                                Ingreso de Articulo
-                            </div>
+                            
 
                             <div class="panel-body"><!-- 6 -->
                                 <form >
                                     <?php echo validation_errors(); ?>
                                     <div class="row">
-                                        <div class="col-md-2">
-                                            <label>Codigo Articulo:</label>
-                                            <?php echo form_input($idProducto); ?>
+                                        <div class="alert alert-success" style='display:block'>
+                                        ¡<b>Registro exitoso</b>!
                                         </div>
+                                        <div class="col-md-2">
+                                            <label>Fecha</label>
+                                            <?php echo form_input($fecha); ?>
+                                        </div>
+                                        
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <br />
                                         <div class="col-md-5">
-                                            <label>Descripcion</label>
+                                            <label>Descripción</label>
                                             <?php echo form_input($descripcion); ?>
                                         </div>
+                                    </div>
+                                    <div class='row'>
+                                        <br/>
                                         <div class="col-md-2">
-                                            <label>Ubicacion</label>
-                                            <?php echo form_input($ubicacion); ?>
+                                            <label>Operación</label>
+                                            <select class="form-control" name="operacion" >
+                                                <option>INGRESO</option>
+                                                <option>EGRESO</option>
+                                            </select>
                                         </div>
+                                        <div class="col-md-2">
+                                            <label>Total</label>
+                                            <?php echo form_input($total); ?>
+                                        </div>
+                                        
+
                                     </div>
 
-                                    <div class="row">
-                                        <br />
-                                        <div class="col-md-2">
-                                            <label>Stock</label>
-                                            <?php echo form_input($stock); ?>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Stock minimo</label>
-                                            <?php echo form_input($stock_minimo); ?>
-                                        </div>
-
-                                            <div class="col-md-4">
-                                            <label>Proveedor</label>
-                                            <select class="form-control" name="proveedor_rut"  >
-                                                <?php 
-                                            // a si se hacen estas malditas consultas <3 
-                                            $sql=$this->db->query('select rut, razon_social from Proveedor');
-                                            foreach($sql->result() as $result){
-                                                echo "<option>$result->rut $result->razon_social</option>";
-                                            }
-                                            ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label>Fecha de compra</label>
-                                             <div class="form-group input-group">
-                                                <?php echo form_input($fecha_compra); ?>
-                                            </div>
-                                        </div> 
-                                    </div>
-
-
-                                    <div class="row">
-                                        <br />
-                                        <div class="col-md-2">
-                                            <label>Costo</label>
-                                             <?php echo form_input($costo); ?>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Ferretera</label>
-                                            <?php echo form_input($ferretera); ?>
-                                        </div>
-
-                                        <div class="col-md-2">
-                                            <label>Especialista</label>
-                                             <?php echo form_input($especialista); ?>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Constructora</label>
-                                            <?php echo form_input($constructora); ?>
-                                        </div>
-                                    </div> 
-
-                                    <div class="row">
-                                        <br />
-                                        <div class="col-md-2">
-                                            <label>Unidad</label>
-                                            <select class="form-control" name="unidad"  >
-                                            <?php 
-                                            // a si se hacen estas malditas consultas <3 
-                                            $sql=$this->db->query('select Unidad from Unidad');
-                                            foreach($sql->result() as $result){
-                                                echo "<option>$result->Unidad</option>";
-                                            }
-                                            ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Marca</label>
-                                            <select class="form-control" name="marca"  >
-                                            <?php 
-                                            // a si se hacen estas malditas consultas <3 
-                                            $sql=$this->db->query('select Marca from Marca');
-                                            foreach($sql->result() as $result){
-                                                echo "<option>$result->Marca</option>";
-                                            }
-                                            ?>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <label>Rubro</label>
-                                            <select class="form-control" name="rubro"  >
-                                                <?php 
-                                            // a si se hacen estas malditas consultas <3 
-                                            $sql=$this->db->query('select Rubro from Rubro');
-                                            foreach($sql->result() as $result){
-                                                echo "<option>$result->Rubro</option>";
-                                            }
-                                            ?>
-                                            </select>
-                                        </div>
-                                    </div>
-
-  
                                     <div class="row">
                                         <br />
                                         <div class="col-md-3">
@@ -539,7 +425,7 @@
                                     </div>       
                                 </form> 
                             </div><!-- 6 -->
-                        </div><!-- 5 -->      
+                             
                     </div><!-- 4 -->
                 </div><!-- 3 -->
             </div><!-- 2 -->

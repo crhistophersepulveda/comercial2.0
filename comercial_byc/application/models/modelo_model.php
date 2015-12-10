@@ -74,7 +74,16 @@ class Modelo_model extends CI_Model
 		$this->db->where ('rut',$rut['idd']);
 		return $this->db->delete('Proveedor');
 	}
+/*------------------------------------------------------------------------------------/
+								CAJA CHICA
+-------------------------------------------------------------------------------------*/
 
+
+/*--MOSTRAR CAJA CHICA --*/
+
+	public function mostrar_caja(){
+			return $this->db->get('Caja_chica');
+	}
 
 }
 ?>

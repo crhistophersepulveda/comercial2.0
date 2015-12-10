@@ -46,7 +46,7 @@ class ingresarVendedor extends CI_Controller{
 
     function rut_chequeo($rut){
         if(!strpos($rut, "-")){
-            $this->form_validation->set_message('rut_chequeo', '  <div class="alert alert-danger" style="display: block;" > ERROR!! El rut debe ingresarse de la siguiente manera 11222333-4 </div>');
+            $this->form_validation->set_message('rut_chequeo', '  <div class="alert alert-danger" style="display: block;" > ERROR!! El rut se debe ingresar de la siguiente manera 11222333-4 </div>');
             return FALSE;
             }
 

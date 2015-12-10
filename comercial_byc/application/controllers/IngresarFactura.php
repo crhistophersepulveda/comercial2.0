@@ -35,6 +35,12 @@ class ingresarFactura extends CI_Controller{
 
                 $this->load->view("Ventas/ingresoFactura",$datos);
 	}
+        public function cargar_articulo(){
+                $art['pArticulo']= $this->input->post('valor_idProducto');
+                $art['pDescripcion']= $this->input->post('valor_descripcion');
+                $art['p$lPrecios
+                $this->load->view("Ventas/ingresoFactura",$art);
+        }
 }
 ?>
 
