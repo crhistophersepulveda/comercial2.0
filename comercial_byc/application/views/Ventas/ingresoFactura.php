@@ -323,7 +323,7 @@
             <div class="row"><!-- 2 -->
                 <div class="col-lg-12"><!-- 3 -->
                     <div class="panel panel-default" ><!-- 4 -->
-                        <?=form_open('/index.php/ingresarCliente/ingresarcliente"');
+                        <?=form_open('/index.php/ingresarFactura/ingresarfactura"');
                             //aqui se procesará nuestro formulario, controlador comentarios, función insertar_comentarios
                             //creamos los arrays que compondran nuestro formulario
                             //primer array con el input que se llamará nombre y será donde introduciremos el mismo
@@ -333,14 +333,26 @@
                              
                                 'class'=>'form-control' // darla la clade de boobtstrap
                             );
-             
+
                             //el segundo array(campo email)
-             
+                            $this->load->helper('date');
+                            $datestring = "%Y/%m/%d ";
+                            $time = time();
                             $Fecha_venta = array(
                                 'name' => 'Fecha_venta',
                                 'id' => 'Fecha_venta',
-                          
-                                'class'=>'form-control'
+                                'class'=>'form-control',
+                                'value' => mdate($datestring, $time)
+                            );
+
+                            $this->load->helper('date');
+                            $datestring = "%Y/%m/%d ";
+                            $time = time();
+                            $Fecha_pago = array(
+                                'name' => 'Fecha_pago',
+                                'id' => 'Fecha_pago',
+                                'class'=>'form-control',
+                                'value' => mdate($datestring, $time)
                             );
              
                             //el tercero...(campo asunto)
@@ -355,7 +367,6 @@
                             $celular_cliente = array(
                                 'name' => 'direccion_cliente',
                                 'id' => 'direccion_cliente',
-                               
                                 'class'=>'form-control',
                                 'value' => $Cel
                             );
@@ -420,12 +431,6 @@
                                 'class'=>'form-control'
                             );
 
-                            $Fecha_pago = array(
-                                'name' => 'Fecha_pago',
-                                'id' => 'Fecha_pago',
-                                'class'=>'form-control'
-                            );
-
                             //el botón submit de nuestro formulario se le da la clase para quedar con boobtstrap
                             $submit = array(
                                 'name' => 'submit',
@@ -435,17 +440,13 @@
                                 'title' => 'Facturar'
                             );
                         ?>
-                        <?=form_open('/index.php/ingresarArticulo/ingresararticulo"');
+                        
 
-                            $idProducto = array(
-                                'name'=>'idProducto',
-                                'id'=>'idProducto',
-                                'class'=>'form-control'
-                            );
-                            
-                        ?>
 
-                        <div class="panel panel-default"  ><!-- 5 -->
+                     
+                        
+
+                        <div class="panel panel-default" ><!-- 5 -->
 
                             <div class="panel-heading">
                                 Datos de Facturación
@@ -460,6 +461,15 @@
                                             <label>Factura nº :</label>
                                             <?php echo form_input($N_factura); ?>
                                         </div>
+                                        <div class="col-md-2">
+                                            <label>Fecha :</label>
+                                            <?php echo form_input($Fecha_venta); ?>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Fecha de pago :</label>
+                                            <?php echo form_input($Fecha_pago); ?>
+                                        </div>
+
                                     </div>
 
                                     <div class="row">
@@ -530,33 +540,118 @@
                                                     <table class="table table-striped table-bordered table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th>Cantidad</th>
                                                                 <th>Codigo</th>
                                                                 <th>Descripción</th>
                                                                 <th>Valor</th>
+                                                                <th>Cantidad</th>
                                                                 <th>Total</th>
+                                                                <th>Eliminar</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td></td>
 
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                            <?php
+
+                                                                $Sub_total = 0;
+                                                                $Total=0;
+                                                                $Sub_total_iva=0;
+
+                                                                foreach ($L_articulos-> result() as $articulos ){
+
+                                                                    $Sub_total = (int)$Sub_total + (int)$articulos->Total;
+                                                                
+                                                                    echo "
+                                                                        <tr>
+                                                                            <td>$articulos->id_producto</td>
+                                                                            <td>$articulos->Nombre</td>
+                                                                            <td>$articulos->Precio</td>
+                                                                            <td>$articulos->cantidad</td>
+                                                                            <td>$articulos->Total</td>
+                                                                            <td>
+                                                                                <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/ingresarFactura/borrar_articulo'>
+                                                                                    <input type='hidden' value='$rCliente' name='valor_rut'/input>
+
+                                                                                    <input type='hidden' value='$rSocial' name='valor_nombre_razon'/input>
+
+                                                                                    <input type='hidden' value='$lPrecios' name='valor_Lista_precios_Lista_precio'/input>
+
+                                                                                    <input type='hidden' value='$dVendedor' name='valor_vendedor'/input>
+
+                                                                                    <input type='hidden' value='$Cel' name='valor_direccion'/input>
+
+                                                                                    <input type='hidden' value='$cPago' name='valor_condicion_pago'/input>
+
+                                                                                    <input type='hidden' value='$Cel' name='valor_celular'/input>
+
+                                                                                    <input type='hidden' value='$articulos->id_producto' name='valor_producto'/input>
+                                                                                   
+                                                                                    <button type='submit' class='btn btn-warning btn-circle'> <i class='fa fa-times'></i></button>
+                                                                                </form> 
+                                                                            </td>
+                                                                        </tr>
+                                                                    ";
+                                                                }      
+                                                            
+                                                            $Sub_total_iva= (int)$Sub_total*0.19;
+                                                            $Total=(int)$Sub_total_iva+(int)$Sub_total;
+                                                            ?>
+                                                            
+                                                    </tbody>
+                                                </table>
                                             </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <br />
-                                        <div class="col-md-3">
-                                            <?php echo form_submit($submit);?>
+
+                                        <div class="col-md-2">
+                                            <label>Sub total </label>
+                                            <input class="form-control" name="Sub_total" value=    <?php echo "$Sub_total"; ?>  />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Sub total + IVA</label>
+                                            <input class="form-control" name="IVA" value=  <?php echo "$Sub_total_iva"; ?>  />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>Total</label>
+                                            <input class="form-control" name="Total" value=   <?php echo "$Total"; ?> />
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label>% Descuento</label>
+                                            <input class="form-control" name="descuento" value= "0"  />
                                         </div>
                                     </div>  
+
+                                     <div class="row">
+                                        <br />
+                                        <div class="col-md-2" >
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#Facturar_" >Facturar</button>
+                                        </div>
+                                        
+                                            <div class="modal fade in" id="Facturar_" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title" id="myModalLabel">¡Atención!</h4>
+                                                        </div>
+                                                            <div class="modal-body">
+                                                                Esta seguro de que la factura esta correcta  <b></b>?    
+                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary" value="Eliminar">Confirmar</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+
+                                    
+
                                  </form>
 
 
@@ -643,7 +738,7 @@
                              <!-- Modal de clientes -->
 
                              <!-- Modal de Productos -->
-                                    <div class="modal fade in" id="Articulos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                     <div class="modal fade in" id="Articulos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -660,38 +755,62 @@
                                                                     <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example1" role="grid" aria-describedby="dataTables-example_info">
                                                                         <thead>
                                                                             <tr role="row">
-                                                                                <th>Codigo</th>
-                                                                                <th>Descripción</th>
-                                                                                <th>P.<?php echo" $lPrecios"?></th>
-                                                                                <th>Seleccionar</th>
+                                                                                <th>Codigo de articulo</th>
+                                                                                <th>Descripcion</th>
+                                                                                <th>Cantidad disponible</th>
+                                                                                <th>Precio</th>
+                                                                                <th>Cantidad / seleccionar</th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
+                                                                        
                                                                         <?php
-                                                                            $sql1=$this->db->query("select p.*, p.$lPrecios precios from Producto p where p.$lPrecios = $lPrecios ");
 
-                                                                            foreach ($sql1-> result() as $listaprod){
+                                                                            $sql1=$this->db->query("select p.idProducto cod, p.descripcion des, p.$lPrecios pre, p.stock stock from Producto p");
+                                                                            foreach ($sql1 -> result() as $lista_Articulos){
                                                                                   
                                                                             echo "
                                                                                     
-                                                                            <tr>                     
-                                                                                <td>$listaprod->idProducto</td>
-                                                                                <td>$listaprod->descripcion</td>
-                                                                                <td>$listaprod->precios</td>
-                                                                                            
+                                                                            <tr> 
+                                                                                <td>$lista_Articulos->cod</td>
+                                                                                <td>$lista_Articulos->des</td>
+                                                                                <td>$lista_Articulos->stock</td>
+                                                                                <td>$lista_Articulos->pre</td>          
                                                                                 <td>
-                                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/ingresarFactura/cargar_articulo'> 
+                                                                                    <form method='post' action='";?><?php echo base_url() ;?><?echo"index.php/ingresarFactura/cargar_articulo'>
 
-                                                                                        <input type='hidden' value='$listaprod->idProducto' name='valor_idProducto'/input>
+                                                                                        <input style='width:50px' name='valor_cantidad'/input> 
+                                                                                   
+                                                                                        <input type='hidden' value='$rCliente' name='valor_rut'/input>
+
+                                                                                        <input type='hidden' value='$rSocial' name='valor_nombre_razon'/input>
+
+                                                                                        <input type='hidden' value='$lPrecios' name='valor_Lista_precios_Lista_precio'/input>
+
+                                                                                        <input type='hidden' value='$dVendedor' name='valor_vendedor'/input>
+
+                                                                                        <input type='hidden' value='$Cel' name='valor_direccion'/input>
+
+                                                                                        <input type='hidden' value='$cPago' name='valor_condicion_pago'/input>
+
+                                                                                        <input type='hidden' value='$Cel' name='valor_celular'/input>
+
+                                                                                        <input type='hidden' value='$lista_Articulos->cod' name='valor_codigo'/input>
+
+                                                                                        <input type='hidden' value='$lista_Articulos->des' name='valor_descrpcion'/input>
+
+                                                                                        <input type='hidden' value='$lista_Articulos->pre' name='valor_precio'/input>
                                                                                             
                                                                                         <button type='submit' class='btn btn-info btn-circle' d > <i class='fa fa-check'></i></button>
-                                                                                   </form>
+                                                                                    </form> 
                                                                                 </td>
+                                                                                
                                                                             </tr>
 
                                                                             ";
                                                                         }
                                                                          ?>
+
 
                                                                         </tbody>
                                                                     </table>
@@ -707,8 +826,6 @@
                                          </div>
                                       </div>                                    
                                     </div>
-                               
-
                             <!-- Modal de Productos -->
 
 

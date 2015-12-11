@@ -39,8 +39,6 @@ class Articulos extends CI_Model
             'descripcion' => $descripcion,
             'ubicacion' => $ubicacion,
             'stock' => $stock,
-            'stock_minimo' => $stock_minimo,
-            'fecha_compra' => "2015/12/08",
             'costo' => $costo,
             'ferretera' => $ferretera,
             'especialista' => $especialista,
@@ -56,6 +54,25 @@ class Articulos extends CI_Model
         );
         $query = $this->db->where('idProducto', $idProducto);
         $query = $this->db->update('Producto', $data);
+    }
+
+    function Modificar_stock($idProducto, $stock){
+
+        $sql=$this->db->query("select * from Producto");
+
+        foreach ($sql-> result() as $lista){
+            if ($idProducto==$lista->idProducto) {
+
+                $n_stock=(int)$lista->stock - $stock;
+                $data = array(
+                'idProducto' => $idProducto,
+                'stock' => $n_stock
+                );
+                $query = $this->db->where('idProducto', $idProducto);
+                $query = $this->db->update('Producto', $data);
+   
+            }
+        }
     }
 }
  
