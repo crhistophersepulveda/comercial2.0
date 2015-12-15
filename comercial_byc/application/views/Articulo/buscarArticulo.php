@@ -361,9 +361,9 @@
                                             <th>Codigo</th>
                                             <th>Descripción</th>
                                             <th>Costo</th>
-                                            <th>P. Ferretera</th>
-                                            <th>P. Especialista</th>
-                                            <th>P. Constructora</th>
+                                            <th>Ferretera</th>
+                                            <th>Especialista</th>
+                                            <th>Constructora</th>
                                             <th>Stock</th>
                                             <th>Marca</th>
                                             <th>Rubro</th>
