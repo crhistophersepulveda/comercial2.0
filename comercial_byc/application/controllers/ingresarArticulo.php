@@ -19,17 +19,7 @@ class ingresarArticulo extends CI_Controller{
 
         if($this->input->post('submit')){ 
 
-            //hacemos las comprobaciones que deseemos en nuestro formulario
-            $this->form_validation->set_rules('idProducto','idProducto','trim|required|callback_idProducto_chequeo');
-                        
 
-            if (!$this->form_validation->run())
-                {
-                    //si no pasamos la validación volvemos al formulario mostrando los errores
-                    $this->index();
-                }
-                //si pasamos la validación correctamente pasamos a hacer la inserción en la base de datos
-            else {
 
                 $idProducto = $this->input->post('idProducto');
                 $descripcion = $this->input->post('descripcion');        
@@ -52,7 +42,7 @@ class ingresarArticulo extends CI_Controller{
                 //ahora procesamos los datos hacía el modelo que debemos crear
                 $Ingresar_articulo = $this->Articulos->Ingresar_articulo($idProducto, $descripcion, $ubicacion, $stock, $stock_minimo, $fecha_compra, $costo, $ferretera, $especialista, $constructora,$Proveedor_rut,$Marca_Marca, $Rubro_Rubro, $Unidad_Unidad );
                 redirect('index.php/ingresarArticulo/Index');
-                }
+                
      
 	}
 }

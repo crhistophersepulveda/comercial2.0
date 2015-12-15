@@ -364,19 +364,19 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql = $this->db->query("SELECT ((SELECT SUM(TOTAL) FROM Caja_chica WHERE OPERACION='INGRESO')-(SELECT SUM(TOTAL) FROM Caja_chica WHERE OPERACION='EGRESO')) AS DIFERENCIA FROM Caja_chica GROUP BY FECHA");
+                                            $sql = $this->db->query("SELECT ((SELECT SUM(TOTAL) FROM Caja_chica WHERE OPERACION='INGRESO')-(SELECT SUM(TOTAL) FROM Caja_chica WHERE OPERACION='EGRESO')) AS DIFERENCIA FROM Caja_chica GROUP BY DIFERENCIA");
                                             $sql1 = $this->db->query("select sum(total) as total from Caja_chica where operacion='INGRESO'");
                                             $sql2 = $this->db->query("select sum(total) as total from Caja_chica where operacion='EGRESO'");
                                             
                                             foreach($sql->result() as $resultado){
                                                 foreach($sql1->result() as $res){
-                                                    echo"<td>$res->total</td>";
+                                                    echo"<td>$ $res->total</td>";
                                                 }
                                                 foreach($sql2->result() as $res2){
-                                                    echo"<td>$res2->total</td>";
+                                                    echo"<td>$ $res2->total</td>";
                                                 }
 
-                                            echo"<td>$resultado->DIFERENCIA</td> ";
+                                            echo"<td>$ $resultado->DIFERENCIA</td> ";
                                             }
                                         ?>
                                         

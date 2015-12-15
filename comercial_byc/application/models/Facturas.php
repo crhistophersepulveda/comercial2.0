@@ -31,11 +31,12 @@ class Facturas extends CI_Model
     function Ingresar_Factura_compra_Producto($n_factura, $idProducto, $cantidad){
         $data = array(
 
-            'Factura_compra_n_factura' => $n_factura,
+            'Factura_venta_n_factura' => $n_factura,
             'Producto_idProducto' => $idProducto,
-            'cantidad' => $cantidad,
+            'cantidad' => $cantidad
         );
-        $this->db->insert('Factura_compra_Producto',$data);
+
+        $this->db->insert('Factura_vencida_Producto',$data);
     }
 
 

@@ -100,18 +100,22 @@ class ingresarFactura extends CI_Controller{
 
                 $fecha_pago=$this->input->post('Fecha_pago');
 
+                $Ingresar_factura = $this->Facturas->Ingresar_factura($n_factura, $fecha_venta, $condicion_pago, $Cliente_rut, $Vendedor_rut, $neto, $iva, $descuento,$total,$estado, $fecha_pago);
+
+
                 $sql=$this->db->query("select * from Productos_aux");
 
                 foreach ($sql-> result() as $Articulos){
 
                     $Actualizar_stock = $this->Articulos->Modificar_stock($Articulos->id_producto, $Articulos->cantidad);
+                    $Ingresar_articulo = $this->Facturas->Ingresar_Factura_compra_Producto($n_factura,$Articulos->id_producto,$Articulos->cantidad);
                     $articulo = array('idd' => $Articulos->id_producto);
                     $this->Articulos_aux->borrar_producto_aux($articulo);
 
                 }
                       
                 //ahora procesamos los datos hacía el modelo que debemos crear
-                $Ingresar_factura = $this->Facturas->Ingresar_factura($n_factura, $fecha_venta, $condicion_pago, $Cliente_rut, $Vendedor_rut, $neto, $iva, $descuento,$total,$estado, $fecha_pago);
+                
                 redirect('index.php/ingresarFactura/Index');;   
         }
 

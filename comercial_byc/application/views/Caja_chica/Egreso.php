@@ -372,7 +372,7 @@
                                             <tr>
                                                 <td>$eg->fecha</td>
                                                 <td>$eg->descripcion</td>
-                                                <td>$eg->total</td>
+                                                <td>$ $eg->total</td>
                                                 
                                                 ";
                                                 
