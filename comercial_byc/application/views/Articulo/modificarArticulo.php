@@ -357,7 +357,7 @@
                                             <th>Ferretera</th>
                                             <th>Especialista</th>
                                             <th>Constructora</th>
-                                            <th>Marca</th>
+                                            
                                             <th>Modificar</th>
                                             <TH>Eliminar</th>
                                         </tr>
@@ -385,7 +385,6 @@
                                                 <td>$modificars->ferretera</td>
                                                 <td>$modificars->especialista</td>
                                                 <td>$modificars->constructora</td>
-                                                <td>$modificars->Marca_Marca</td>
                                                 <td>
                                                 <button type='button' class='btn btn-primary btn-circle' data-toggle='modal' data-target='#2$modificars->idProducto' > <i class='fa fa-list'></i></button>
                                                 </td>
